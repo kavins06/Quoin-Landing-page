@@ -1,34 +1,26 @@
-# Quoin Mobile Hero Visual Removal
+# Quoin Codespaces Setup
 
-Visual thesis: a cleaner mobile-first hero that relies on copy, CTA, and a composed focus card without the building visual.
+Setup thesis: make the repo cloud-workspace ready so it can be opened in GitHub Codespaces, bootstrapped automatically, and used as the primary execution environment instead of a local device.
 
-Content plan:
-- Top: brand chrome and eyebrow.
-- Primary message: headline, shorter mobile lede, CTA.
-- Mobile commentary: focus card immediately after the CTA.
-- Support: operating-model link and supporting copy below the focus card.
-
-Interaction thesis:
-- Desktop and tablet stay unchanged.
-- Mobile remains non-pinned and non-animated.
-- Remove the dedicated mobile building block and rebalance spacing for small phones.
+Delivery plan:
+- Add a dev container configuration for Node/Vite development.
+- Forward the Vite dev port and install dependencies on first launch.
+- Replace the placeholder README with repo-specific setup and a mobile-friendly GitHub-first workflow.
 
 ## Tasks
 
-- [DONE] Remove the mobile-only building visual path from `src/App.jsx` while keeping the mobile focus card and desktop hero intact.
-- [DONE] Rework mobile rules in `src/App.css` so the hero reads as copy, CTA, focus card, then support content without empty visual scaffolding.
+- [DONE] Add Codespaces/devcontainer support for this Vite app, including dependency bootstrap and forwarded ports.
+- [DONE] Replace the generic README with project-specific setup, Codespaces usage, and a GitHub-first mobile workflow.
 - [DONE] Verify with `npm run lint` and `npm run build`.
 
 ## Files
 
-- `src/App.jsx`
-- `src/App.css`
+- `.devcontainer/devcontainer.json`
+- `README.md`
 
 ## Acceptance Criteria
 
-- Mobile headline remains fully readable.
-- The CTA stays visible and naturally placed above the focus card.
-- No mobile hero visual renders or reserves space.
-- The focus card remains visible, composed, and integrated into the mobile stack.
-- Compact phones remain legible, balanced, and free of clipping or hidden content.
+- Opening the repo in Codespaces installs dependencies and exposes the Vite dev server port cleanly.
+- The README explains how to start, test, preview, and push from a cloud workspace.
+- The README also explains the practical mobile workflow for using Codex with a GitHub-hosted workspace.
 - `npm run lint` and `npm run build` pass.

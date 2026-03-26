@@ -1,0 +1,39 @@
+{
+  "name": "Quoin Landing Page",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm",
+  "postCreateCommand": "npm ci",
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "README.md",
+        "src/App.jsx"
+      ]
+    },
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.eol": "\n"
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-playwright.playwright"
+      ]
+    }
+  },
+  "forwardPorts": [
+    5173,
+    4173
+  ],
+  "portsAttributes": {
+    "5173": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "openPreview"
+    },
+    "4173": {
+      "label": "Vite Preview Server",
+      "onAutoForward": "silent"
+    }
+  },
+  "remoteUser": "node"
+}
