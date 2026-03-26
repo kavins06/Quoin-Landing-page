@@ -31,7 +31,6 @@ export const heroContent = {
     'Quoin automates benchmarking, BEPS compliance, data QA, and penalty forecasting for DC owners and operators.',
   support:
     'For owners, asset managers, and operators managing DC reporting cycles.',
-  primaryCta: 'Request a demo',
   secondaryLink: 'Review the operating model',
 }
 

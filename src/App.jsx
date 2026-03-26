@@ -317,12 +317,6 @@ function App() {
                     </p>
                   </div>
 
-                  <div className="hero-copy__actions hero-copy__actions--primary">
-                    <a className="button button--primary" href="#cta">
-                      {heroContent.primaryCta}
-                    </a>
-                  </div>
-
                   <div className="hero-mobile-composition">
                     <section
                       className="hero-focus-inline"
