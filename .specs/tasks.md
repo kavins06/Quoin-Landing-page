@@ -1,38 +1,37 @@
-# Quoin Hero Scroll And Responsive Refinement
+# Quoin Mobile Hero Second-Pass Polish
 
-Visual thesis: a calm architectural poster with a dominant center-moving tower, a left-anchored copy column, and a stable right-side commentary rail.
+Visual thesis: a mobile-native hero with a shorter first read, an earlier building reveal, and an attached focus card that feels art-directed rather than appended.
 
 Content plan:
-- Hero: left headline and CTA, center-moving tower, persistent right-side focus rail.
-- Support: signal strip and operating model sections remain secondary and orderly.
-- Detail: benchmark, BEPS, and forecasting sections keep the narrative grounded.
-- Final CTA: concise conversion block with no layout regressions.
+- Top: brand chrome and eyebrow.
+- Primary message: headline, shorter mobile lede, CTA.
+- Visual sequence: framed building visual and attached focus card.
+- Support: operating-model link and supporting copy below the composition.
 
 Interaction thesis:
-- The tower glides from a left-weighted opening position toward a centered featured position on desktop.
-- The commentary rail stays anchored in a fixed right-side lane while its content crossfades through scroll states.
-- Tablet and mobile simplify motion and restack content so readability stays stronger than spectacle.
+- Desktop and tablet stay essentially unchanged.
+- Mobile remains non-pinned and non-animated.
+- Small-phone rules tighten density without collapsing the visual rhythm.
 
 ## Tasks
 
-- [DONE] Inspect the current hero layout, scroll mapping, and responsive breakpoints in `src/App.jsx`, `src/App.css`, and supporting content files.
-- [DONE] Refactor the desktop hero into a stable three-zone composition where the building moves toward center and the right-side rail stays vertically centered in the far-right column.
-- [DONE] Replace the rail pop-in behavior with content-only step transitions that preserve the current narrative progression.
-- [DONE] Rework tablet and mobile hero layout and motion so the section remains legible, uncluttered, and touch-friendly.
-- [DONE] Verify with lint, production build, and browser screenshots across desktop, tablet, and mobile.
+- [DONE] Move hero copy into `src/content.js`, including a shorter mobile lede and CTA/link labels.
+- [DONE] Refactor the mobile hero composition in `src/App.jsx` so the building visual and focus card form a single mobile sequence after the CTA.
+- [DONE] Rework mobile hero CSS in `src/App.css` to improve visual hierarchy, earlier image presence, and stronger composition on phone screens.
+- [DONE] Add a compact-phone breakpoint for `320x568`-class viewports with tighter type, spacing, and composition rules.
+- [DONE] Verify with `npm run lint`, `npm run build`, and browser screenshots at `320x568`, `360x800`, `390x844`, and `412x915`.
 
 ## Files
 
+- `src/content.js`
 - `src/App.jsx`
 - `src/App.css`
-- `src/content.js` if content treatment requires minor breakpoint-aware support
 
 ## Acceptance Criteria
 
-- Desktop hero reads as three zones: left copy, center-building, far-right commentary rail.
-- The commentary rail never rises from the bottom or drifts into the center of the page.
-- Scroll progress changes the rail content without changing its anchored lane.
-- The hero visual starts left-weighted and glides toward center with restrained, smooth motion.
-- Tablet and mobile layouts avoid overlap, clipped copy, awkward off-screen hero crops, and jittery motion.
-- CTA, headline, and primary message remain clear at all breakpoints.
+- Mobile headline remains fully readable while taking less vertical space than the current pass.
+- The CTA stays visible and naturally placed above the building.
+- The building appears sooner and feels more present on phones.
+- The focus card feels attached to the visual composition instead of trailing it.
+- Compact phones remain legible, balanced, and free of clipping or hidden content.
 - `npm run lint` and `npm run build` pass.

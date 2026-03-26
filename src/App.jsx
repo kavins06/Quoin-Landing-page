@@ -4,12 +4,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './App.css'
 import HeroScene from './components/HeroScene'
 import SectionBlock from './components/SectionBlock'
-import { heroSteps, sections, trustSignals } from './content'
+import { heroContent, heroSteps, sections, trustSignals } from './content'
+import { heroMediaFrames } from './content/heroMedia'
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const primaryHeroStep = heroSteps[0]
+const primaryHeroFrame = heroMediaFrames[0]
 
 function App() {
   const pageRef = useRef(null)
@@ -244,62 +246,10 @@ function App() {
 
         mm.add('(max-width: 720px)', () => {
           gsap.set(heroStepsNodes, { clearProps: 'all' })
-          gsap.set(heroFrame, {
-            autoAlpha: 1,
-            scale: 0.985,
-            xPercent: 10,
-            yPercent: 0,
-            rotation: 0,
-          })
-          gsap.set(heroRail, {
-            autoAlpha: 1,
-            xPercent: 0,
-            yPercent: 0,
-            x: 0,
-            y: 0,
-          })
-          gsap.set(ambientVeil, { opacity: 0.1 })
-          gsap.set(depthVeil, { opacity: 0.06, scale: 0.99 })
-
-          gsap.timeline({
-            defaults: { ease: 'none' },
-            scrollTrigger: {
-              trigger: heroTrackRef.current,
-              start: 'top top',
-              end: 'bottom bottom',
-              scrub: 0.55,
-              pin: '.hero-stage',
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            },
-          })
-            .to(
-              heroFrame,
-              {
-                scale: 1.005,
-                xPercent: 4,
-                yPercent: 0,
-                duration: 1.05,
-              },
-              0,
-            )
-            .to(
-              ambientVeil,
-              {
-                opacity: 0.14,
-                duration: 1.02,
-              },
-              0,
-            )
-            .to(
-              depthVeil,
-              {
-                opacity: 0.1,
-                scale: 1.008,
-                duration: 1.02,
-              },
-              0.12,
-            )
+          gsap.set(heroFrame, { clearProps: 'all' })
+          gsap.set(heroRail, { clearProps: 'all' })
+          gsap.set(ambientVeil, { clearProps: 'all' })
+          gsap.set(depthVeil, { clearProps: 'all' })
         })
       } else {
         gsap.set(heroStepsNodes, { clearProps: 'all' })
@@ -360,46 +310,61 @@ function App() {
               <div className="hero-layout">
                 <div className="hero-copy">
                   <div className="hero-copy__body">
-                    <p className="hero-copy__eyebrow">
-                      Regulatory-grade compliance for DC buildings over 10,000 sq ft
+                    <p className="hero-copy__eyebrow">{heroContent.eyebrow}</p>
+                    <h1>{heroContent.headline}</h1>
+                    <p className="hero-copy__lede hero-copy__lede--desktop">
+                      {heroContent.ledeDesktop}
                     </p>
-                    <h1>Operational clarity for every reporting cycle.</h1>
-                    <p className="hero-copy__lede">
-                      Quoin automates benchmarking, BEPS compliance, data QA, and
-                      penalty forecasting so owners, asset managers, and operators
-                      can act before deadlines become liabilities.
+                    <p className="hero-copy__lede hero-copy__lede--mobile">
+                      {heroContent.ledeMobile}
                     </p>
                   </div>
 
-                  <div className="hero-copy__cta">
-                    <div className="hero-copy__actions">
-                      <a className="button button--primary" href="#cta">
-                        Request a demo
-                      </a>
-                    </div>
-                    <p className="hero-copy__support">
-                      For owners, asset managers, and operators managing DC
-                      reporting cycles.
-                    </p>
-                    <a className="button-link" href="#platform">
-                      Review the operating model
+                  <div className="hero-copy__actions hero-copy__actions--primary">
+                    <a className="button button--primary" href="#cta">
+                      {heroContent.primaryCta}
                     </a>
                   </div>
 
-                  <section
-                    className="hero-focus-inline"
-                    aria-label="Current focus"
-                  >
-                    <span className="hero-focus-inline__caption">Current focus</span>
-                    <article className="hero-focus-inline__item">
-                      <p className="hero-step__label">
-                        <span>{primaryHeroStep.index}</span>
-                        {primaryHeroStep.label}
-                      </p>
-                      <h2>{primaryHeroStep.title}</h2>
-                      <p>{primaryHeroStep.body}</p>
-                    </article>
-                  </section>
+                  <div className="hero-mobile-composition">
+                    {primaryHeroFrame ? (
+                      <div className="hero-mobile-visual" aria-hidden="true">
+                        <div className="hero-mobile-visual__frame">
+                          <img
+                            className="hero-mobile-visual__image"
+                            src={primaryHeroFrame.src}
+                            alt=""
+                            loading="eager"
+                            decoding="async"
+                          />
+                        </div>
+                      </div>
+                    ) : null}
+
+                    <section
+                      className="hero-focus-inline"
+                      aria-label="Current focus"
+                    >
+                      <span className="hero-focus-inline__caption">
+                        Current focus
+                      </span>
+                      <article className="hero-focus-inline__item">
+                        <p className="hero-step__label">
+                          <span>{primaryHeroStep.index}</span>
+                          {primaryHeroStep.label}
+                        </p>
+                        <h2>{primaryHeroStep.title}</h2>
+                        <p>{primaryHeroStep.body}</p>
+                      </article>
+                    </section>
+                  </div>
+
+                  <div className="hero-copy__secondary">
+                    <p className="hero-copy__support">{heroContent.support}</p>
+                    <a className="button-link" href="#platform">
+                      {heroContent.secondaryLink}
+                    </a>
+                  </div>
                 </div>
 
                 <aside

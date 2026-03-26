@@ -22,6 +22,19 @@ export const heroSteps = [
   },
 ]
 
+export const heroContent = {
+  eyebrow: 'Regulatory-grade compliance for DC buildings over 10,000 sq ft',
+  headline: 'Operational clarity for every reporting cycle.',
+  ledeDesktop:
+    'Quoin automates benchmarking, BEPS compliance, data QA, and penalty forecasting so owners, asset managers, and operators can act before deadlines become liabilities.',
+  ledeMobile:
+    'Quoin automates benchmarking, BEPS compliance, data QA, and penalty forecasting for DC owners and operators.',
+  support:
+    'For owners, asset managers, and operators managing DC reporting cycles.',
+  primaryCta: 'Request a demo',
+  secondaryLink: 'Review the operating model',
+}
+
 export const sections = [
   {
     id: 'platform',
