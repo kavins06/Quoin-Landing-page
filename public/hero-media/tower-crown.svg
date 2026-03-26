@@ -1,0 +1,65 @@
+<svg width="2400" height="1600" viewBox="0 0 2400 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FCFBF9"/>
+      <stop offset="100%" stop-color="#F2EEE7"/>
+    </linearGradient>
+    <linearGradient id="glassFront" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EEF7FA"/>
+      <stop offset="100%" stop-color="#B8CBD7"/>
+    </linearGradient>
+    <linearGradient id="glassSide" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E0EDF2"/>
+      <stop offset="100%" stop-color="#AABBC7"/>
+    </linearGradient>
+    <filter id="cloud" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="90"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="1520" cy="198" rx="420" ry="128" fill="#FFFFFF" fill-opacity="0.92" filter="url(#cloud)"/>
+  <ellipse cx="1910" cy="376" rx="340" ry="104" fill="#F1F4F5" fill-opacity="0.56" filter="url(#cloud)"/>
+
+  <g transform="translate(600 -74) scale(1.44)">
+    <polygon points="430,826 632,790 604,168 406,214" fill="#C8D2D7"/>
+    <polygon points="632,790 766,722 724,136 604,168" fill="#B4C3CB"/>
+    <polygon points="454,788 622,756 592,214 430,250" fill="url(#glassFront)"/>
+    <polygon points="622,756 734,700 698,188 592,214" fill="url(#glassSide)"/>
+    <polygon points="408,214 604,168 728,126 530,160" fill="#D9E1E4"/>
+    <polygon points="480,214 610,190 686,154 554,176" fill="#EEF4F6" fill-opacity="0.86"/>
+
+    <g opacity="0.82">
+      <line x1="494" y1="782" x2="470" y2="246" stroke="#D8E5EB" stroke-width="8"/>
+      <line x1="560" y1="770" x2="538" y2="232" stroke="#D8E5EB" stroke-width="8"/>
+      <line x1="628" y1="756" x2="606" y2="218" stroke="#D8E5EB" stroke-width="8"/>
+      <line x1="688" y1="730" x2="666" y2="198" stroke="#D4E1E8" stroke-width="7"/>
+    </g>
+
+    <g opacity="0.62">
+      <line x1="442" y1="694" x2="614" y2="660" stroke="#B1C4CF" stroke-width="5"/>
+      <line x1="446" y1="586" x2="608" y2="556" stroke="#B1C4CF" stroke-width="5"/>
+      <line x1="450" y1="480" x2="602" y2="452" stroke="#B1C4CF" stroke-width="5"/>
+      <line x1="454" y1="372" x2="596" y2="346" stroke="#B1C4CF" stroke-width="5"/>
+      <line x1="458" y1="266" x2="590" y2="242" stroke="#B1C4CF" stroke-width="5"/>
+      <line x1="626" y1="646" x2="726" y2="598" stroke="#A9BDC8" stroke-width="4"/>
+      <line x1="632" y1="536" x2="718" y2="494" stroke="#A9BDC8" stroke-width="4"/>
+      <line x1="638" y1="424" x2="710" y2="388" stroke="#A9BDC8" stroke-width="4"/>
+      <line x1="644" y1="312" x2="702" y2="282" stroke="#A9BDC8" stroke-width="4"/>
+    </g>
+
+    <polygon points="506,204 648,178 618,62 478,86" fill="#CFDADF"/>
+    <polygon points="648,178 748,128 712,22 618,62" fill="#BDCBD2"/>
+    <polygon points="526,188 634,170 612,84 506,102" fill="#E4EEF2"/>
+    <polygon points="634,170 714,130 688,48 612,84" fill="#C6D5DD"/>
+
+    <g opacity="0.86">
+      <line x1="550" y1="182" x2="536" y2="98" stroke="#D8E6EC" stroke-width="7"/>
+      <line x1="596" y1="174" x2="584" y2="90" stroke="#D8E6EC" stroke-width="7"/>
+      <line x1="640" y1="166" x2="632" y2="84" stroke="#D8E6EC" stroke-width="7"/>
+      <line x1="680" y1="150" x2="674" y2="72" stroke="#D8E6EC" stroke-width="6"/>
+    </g>
+
+    <polygon points="430,40 694,-8 820,50 560,100" fill="#EFECE4"/>
+    <polygon points="694,-8 820,50 804,76 678,20" fill="#D6D0C6"/>
+  </g>
+</svg>

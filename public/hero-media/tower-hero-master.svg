@@ -1,0 +1,89 @@
+<svg width="2400" height="1600" viewBox="0 0 2400 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="stoneFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5F1EA"/>
+      <stop offset="100%" stop-color="#D8D1C6"/>
+    </linearGradient>
+    <linearGradient id="stoneSide" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#DDD6CA"/>
+      <stop offset="100%" stop-color="#C7BEB0"/>
+    </linearGradient>
+    <linearGradient id="glassFront" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F0F9FC"/>
+      <stop offset="55%" stop-color="#D8E8F0"/>
+      <stop offset="100%" stop-color="#B8CCD8"/>
+    </linearGradient>
+    <linearGradient id="glassSide" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E5F0F5"/>
+      <stop offset="100%" stop-color="#AFC1CC"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E7ECEE"/>
+      <stop offset="100%" stop-color="#C3CDD2"/>
+    </linearGradient>
+    <linearGradient id="sitePlane" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5F1E9"/>
+      <stop offset="100%" stop-color="#DED7CD"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(340 148)">
+    <ellipse cx="1336" cy="1032" rx="154" ry="30" fill="#C7C2B9" fill-opacity="0.18"/>
+
+    <polygon points="1088,836 1416,836 1416,990 1088,990" fill="url(#stoneFront)"/>
+    <polygon points="1416,836 1534,786 1534,940 1416,990" fill="url(#stoneSide)"/>
+    <polygon points="1130,882 1368,882 1368,966 1130,966" fill="#F6F2EB"/>
+    <polygon points="1368,882 1466,842 1466,926 1368,966" fill="#D8D1C5"/>
+
+    <polygon points="1134,864 1384,864 1384,884 1134,884" fill="#ECE5DB"/>
+    <polygon points="1384,864 1478,824 1478,844 1384,884" fill="#D2CABD"/>
+
+    <polygon points="1152,904 1350,904 1350,968 1152,968" fill="url(#glassFront)"/>
+    <polygon points="1350,904 1458,860 1458,924 1350,968" fill="url(#glassSide)"/>
+    <g opacity="0.74">
+      <line x1="1194" y1="948" x2="1332" y2="948" stroke="#A7BBC8" stroke-width="5"/>
+      <line x1="1230" y1="952" x2="1230" y2="904" stroke="#AEC0CB" stroke-width="4"/>
+      <line x1="1292" y1="952" x2="1292" y2="904" stroke="#AEC0CB" stroke-width="4"/>
+    </g>
+
+    <polygon points="1104,836 1406,836 1406,794 1104,794" fill="#F0EADF"/>
+    <polygon points="1406,836 1516,790 1516,748 1406,794" fill="#D9D2C5"/>
+
+    <polygon points="1124,794 1380,794 1380,188 1124,188" fill="#CCD6DB"/>
+    <polygon points="1380,794 1512,736 1512,132 1380,188" fill="#B6C5CE"/>
+    <polygon points="1154,772 1346,772 1346,228 1154,228" fill="url(#glassFront)"/>
+    <polygon points="1346,772 1464,720 1464,176 1346,228" fill="url(#glassSide)"/>
+
+    <polygon points="1124,188 1380,188 1512,132 1256,132" fill="#DDE6EA"/>
+    <polygon points="1204,188 1362,188 1454,150 1296,150" fill="#EEF5F7" fill-opacity="0.86"/>
+
+    <g opacity="0.78">
+      <line x1="1204" y1="748" x2="1204" y2="248" stroke="#DAE7ED" stroke-width="8"/>
+      <line x1="1268" y1="748" x2="1268" y2="248" stroke="#DAE7ED" stroke-width="8"/>
+      <line x1="1330" y1="748" x2="1330" y2="248" stroke="#DAE7ED" stroke-width="8"/>
+      <line x1="1396" y1="724" x2="1396" y2="204" stroke="#D6E2E8" stroke-width="7"/>
+    </g>
+
+    <g opacity="0.56">
+      <line x1="1154" y1="678" x2="1346" y2="678" stroke="#AFC2CD" stroke-width="5"/>
+      <line x1="1154" y1="568" x2="1346" y2="568" stroke="#AFC2CD" stroke-width="5"/>
+      <line x1="1154" y1="458" x2="1346" y2="458" stroke="#AFC2CD" stroke-width="5"/>
+      <line x1="1154" y1="348" x2="1346" y2="348" stroke="#AFC2CD" stroke-width="5"/>
+      <line x1="1384" y1="634" x2="1458" y2="600" stroke="#AABEC9" stroke-width="4"/>
+      <line x1="1384" y1="522" x2="1458" y2="490" stroke="#AABEC9" stroke-width="4"/>
+      <line x1="1384" y1="410" x2="1458" y2="380" stroke="#AABEC9" stroke-width="4"/>
+      <line x1="1384" y1="298" x2="1458" y2="270" stroke="#AABEC9" stroke-width="4"/>
+    </g>
+
+    <polygon points="1166,188 1348,188 1348,132 1166,132" fill="#CFDAE0"/>
+    <polygon points="1348,188 1450,144 1450,88 1348,132" fill="#BCC8CE"/>
+    <polygon points="1200,188 1330,188 1330,146 1200,146" fill="#EFF6F9"/>
+    <polygon points="1330,188 1416,152 1416,110 1330,146" fill="#D1DFE5"/>
+
+    <polygon points="1128,132 1368,132 1498,82 1258,82" fill="url(#metal)"/>
+    <polygon points="1368,132 1498,82 1470,96 1340,146" fill="#C6C7C2"/>
+
+    <rect x="1182" y="84" width="24" height="48" fill="#DDE5E9"/>
+    <polygon points="1432,86 1482,66 1482,114 1432,132" fill="#B8C3C9"/>
+  </g>
+</svg>

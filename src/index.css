@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-bg: oklch(0.978 0.004 85);
+  --color-bg-soft: oklch(0.958 0.006 85);
+  --color-surface: oklch(0.995 0.003 90);
+  --color-text-strong: oklch(0.29 0.012 245);
+  --color-text: oklch(0.42 0.013 245);
+  --color-muted: oklch(0.58 0.012 240);
+  --color-line: color-mix(in oklab, var(--color-text-strong) 12%, white);
+  --color-line-strong: color-mix(in oklab, var(--color-text-strong) 20%, white);
+  --color-accent: oklch(0.47 0.04 238);
+  --font-body: 'Public Sans', 'Segoe UI', sans-serif;
+  --font-display: 'Manrope', 'Segoe UI', sans-serif;
+
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-synthesis: none;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 50% 9%, rgba(255, 255, 255, 0.94), transparent 24%),
+    linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-soft) 100%);
+  color: var(--color-text);
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--color-text-strong);
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+h1 {
+  font-size: clamp(3.35rem, 2.7rem + 2.2vw, 5rem);
+}
+
+h2 {
+  font-size: clamp(2.1rem, 1.7rem + 1.28vw, 3.25rem);
+}
+
+p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+canvas {
+  display: block;
+}
+
+@media (max-width: 720px) {
+  :root {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

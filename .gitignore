@@ -1,0 +1,37 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local design/debug artifacts
+.playwright-cli/
+output/
+.impeccable.md
+fix_nostrict_*.png
+output_*.png
+state_*.png
+scroll_*.png
+s2400.png
+s3200.png
+s3800.png
+s4300.png
