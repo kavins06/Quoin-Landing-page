@@ -5,14 +5,11 @@ import './App.css'
 import HeroScene from './components/HeroScene'
 import SectionBlock from './components/SectionBlock'
 import { heroContent, heroSteps, sections, trustSignals } from './content'
-import { heroMediaFrames } from './content/heroMedia'
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const primaryHeroStep = heroSteps[0]
-const primaryHeroFrame = heroMediaFrames[0]
-
 function App() {
   const pageRef = useRef(null)
   const heroTrackRef = useRef(null)
@@ -327,20 +324,6 @@ function App() {
                   </div>
 
                   <div className="hero-mobile-composition">
-                    {primaryHeroFrame ? (
-                      <div className="hero-mobile-visual" aria-hidden="true">
-                        <div className="hero-mobile-visual__frame">
-                          <img
-                            className="hero-mobile-visual__image"
-                            src={primaryHeroFrame.src}
-                            alt=""
-                            loading="eager"
-                            decoding="async"
-                          />
-                        </div>
-                      </div>
-                    ) : null}
-
                     <section
                       className="hero-focus-inline"
                       aria-label="Current focus"
