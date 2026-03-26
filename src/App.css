@@ -26,6 +26,14 @@
 }
 
 .hero-stage {
+  --hero-poster-inset: 2.5rem -7% 4rem 6%;
+  --hero-poster-position: 48% 52%;
+  --hero-poster-shift: -4%;
+  --hero-atmosphere-inset: 6% -14% 8% 12%;
+  --hero-depth-inset: 10% -7% 10% 16%;
+  --hero-frame-inset: 1% -8% 2% 6%;
+  --hero-frame-origin: 54% 55%;
+  --hero-image-position: 48% 51%;
   position: sticky;
   top: 0;
   display: grid;
@@ -52,12 +60,13 @@
 
 .hero-poster {
   position: absolute;
-  inset: 2.5rem -12% 4rem 10%;
-  background: url('/hero-media/tower-hero.png?v=3') 42% 52% / cover no-repeat;
-  opacity: 0.24;
+  inset: var(--hero-poster-inset);
+  background: url('/hero-media/tower-hero.png?v=3') var(--hero-poster-position) / cover
+    no-repeat;
+  opacity: 0.2;
   pointer-events: none;
   z-index: -1;
-  transform: translateX(-20%);
+  transform: translateX(var(--hero-poster-shift));
   transition: opacity 320ms ease;
 }
 
@@ -83,7 +92,7 @@
 }
 
 .hero-media__atmosphere {
-  inset: 6% -14% 8% 18%;
+  inset: var(--hero-atmosphere-inset);
   background:
     radial-gradient(circle at 44% 26%, rgba(255, 255, 255, 0.56), transparent 32%),
     radial-gradient(circle at 58% 58%, rgba(209, 221, 228, 0.12), transparent 30%);
@@ -100,16 +109,16 @@
 }
 
 .hero-media__veil--depth {
-  inset: 10% -10% 10% 25%;
+  inset: var(--hero-depth-inset);
   background: radial-gradient(circle at 50% 50%, rgba(214, 223, 229, 0.1), transparent 58%);
   filter: blur(30px);
   transform-origin: center;
 }
 
 .hero-media__frame {
-  inset: 1% -13% 2% 10%;
+  inset: var(--hero-frame-inset);
   will-change: transform, opacity;
-  transform-origin: 58% 56%;
+  transform-origin: var(--hero-frame-origin);
   filter: drop-shadow(0 34px 66px rgba(116, 124, 130, 0.11));
 }
 
@@ -131,7 +140,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 42% 51%;
+  object-position: var(--hero-image-position);
   opacity: 0.98;
   filter: saturate(0.98) contrast(1.08);
 }
@@ -158,7 +167,7 @@
 .hero-overlay__inner {
   display: grid;
   grid-template-rows: auto 1fr;
-  width: min(100%, 100rem);
+  width: min(100%, 104rem);
   height: 100%;
   min-height: 100%;
   margin: 0 auto;
@@ -192,22 +201,23 @@
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 38rem) minmax(14rem, 17rem);
-  justify-content: space-between;
-  align-items: end;
+  grid-template-columns: minmax(0, 35rem) minmax(16rem, 1fr) minmax(14rem, 17rem);
+  justify-content: stretch;
+  align-items: center;
   gap: clamp(2rem, 4vw, 4.5rem);
   width: 100%;
   height: calc(100svh - 5.25rem);
   min-height: calc(100svh - 5.25rem);
-  padding: clamp(1.75rem, 4vh, 3rem) 0 clamp(1.25rem, 3vh, 2rem);
+  padding: clamp(1.25rem, 4vh, 2.4rem) 0;
 }
 
 .hero-copy {
+  grid-column: 1;
   display: grid;
-  align-self: end;
+  align-self: center;
   gap: 1.1rem;
-  max-width: 38rem;
-  padding-bottom: clamp(0.2rem, 1vh, 0.8rem);
+  max-width: 35rem;
+  padding-top: clamp(0.4rem, 1.4vh, 1rem);
 }
 
 .hero-copy__eyebrow,
@@ -233,13 +243,13 @@
 }
 
 .hero-copy__body h1 {
-  max-width: 10ch;
+  max-width: 9ch;
   margin: 0;
   text-wrap: balance;
 }
 
 .hero-copy__lede {
-  max-width: 36ch;
+  max-width: 32ch;
   margin: 0;
   font-size: clamp(0.98rem, 0.94rem + 0.18vw, 1.08rem);
   line-height: 1.56;
@@ -262,7 +272,7 @@
 
 .hero-copy__support {
   margin: 0;
-  max-width: 30ch;
+  max-width: 28ch;
   color: var(--color-muted);
   font-size: 0.9rem;
   line-height: 1.45;
@@ -327,12 +337,14 @@
 }
 
 .hero-rail {
+  grid-column: 3;
   position: relative;
-  align-self: end;
+  align-self: center;
   justify-self: end;
-  min-height: 9.5rem;
+  min-height: 15.5rem;
   max-width: 16.75rem;
-  padding: 0.8rem 0 0;
+  width: 100%;
+  padding: 1rem 0 0;
   border-top: 1px solid rgba(69, 76, 84, 0.14);
   will-change: transform, opacity;
   transform-origin: top right;
@@ -345,7 +357,7 @@
 
 .hero-rail__caption {
   display: inline-flex;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
   color: var(--color-muted);
   font-size: 0.74rem;
   font-weight: 600;
@@ -355,7 +367,7 @@
 
 .hero-step {
   position: absolute;
-  inset: 2rem 0 0;
+  inset: 3rem 0 0;
 }
 
 .hero-rail--static .hero-step {
@@ -386,6 +398,45 @@
 
 .hero-step p:last-child {
   max-width: 28ch;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.hero-focus-inline {
+  display: none;
+}
+
+.hero-focus-inline__caption {
+  display: inline-flex;
+  margin-bottom: 0.8rem;
+  color: var(--color-muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero-focus-inline__item {
+  display: grid;
+  gap: 0.2rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.hero-focus-inline__item h2 {
+  max-width: 15ch;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 1rem + 0.42vw, 1.34rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.14;
+}
+
+.hero-focus-inline__item p:last-child {
+  max-width: 32ch;
   margin: 0;
   color: var(--color-muted);
   font-size: 0.95rem;
@@ -588,7 +639,7 @@
 
 @media (min-width: 1400px) {
   .hero-overlay__inner {
-    width: min(100%, 104rem);
+    width: min(100%, 108rem);
   }
 
   .hero-copy {
@@ -596,13 +647,13 @@
   }
 
   .hero-copy__lede {
-    max-width: 32ch;
+    max-width: 33ch;
   }
 }
 
 @media (max-width: 1199px) and (min-width: 721px) {
   .hero-track {
-    min-height: 300vh;
+    min-height: 250vh;
   }
 
   .hero-overlay {
@@ -611,85 +662,73 @@
   }
 
   .hero-overlay__inner {
-    width: min(100%, 48rem);
+    width: min(100%, 52rem);
   }
 
   .hero-layout {
     grid-template-columns: 1fr;
     align-items: end;
     align-content: end;
-    gap: 1.5rem;
-    padding-top: clamp(1.5rem, 5vh, 2.75rem);
+    gap: 1.35rem;
+    height: calc(100svh - 5rem);
+    min-height: calc(100svh - 5rem);
+    padding-top: clamp(1.25rem, 4vh, 2.35rem);
+  }
+
+  .hero-stage {
+    --hero-poster-inset: 3rem -18% 14rem 36%;
+    --hero-poster-position: 63% 34%;
+    --hero-poster-shift: 0%;
+    --hero-atmosphere-inset: 4% -18% 18% 37%;
+    --hero-depth-inset: 10% -16% 16% 40%;
+    --hero-frame-inset: 2.5% -22% 11% 36%;
+    --hero-frame-origin: 66% 48%;
+    --hero-image-position: 63% 35%;
   }
 
   .hero-poster {
-    inset: 3rem -16% 14rem 36%;
-    background-position: 61% 34%;
-    opacity: 0.22;
-    transform: none;
+    opacity: 0.18;
   }
 
   .hero-media__atmosphere {
-    inset: 4% -16% 19% 35%;
-    filter: blur(30px);
-  }
-
-  .hero-media__frame {
-    inset: 2% -20% 10% 34%;
-    transform-origin: 64% 50%;
+    filter: blur(28px);
   }
 
   .hero-media__image {
-    object-position: 61% 35%;
     opacity: 0.94;
   }
 
   .hero-copy {
-    max-width: min(100%, 34rem);
+    max-width: min(100%, 33rem);
     gap: 1rem;
     padding-bottom: 0;
+    padding-top: 0;
   }
 
   .hero-copy__body h1 {
-    max-width: 8.8ch;
+    max-width: 8.4ch;
   }
 
   .hero-copy__lede {
-    max-width: 31ch;
+    max-width: 29ch;
   }
 
   .hero-copy__cta {
-    max-width: 25rem;
+    max-width: 23rem;
   }
 
   .hero-rail,
   .hero-rail--static {
-    align-self: start;
-    justify-self: start;
-    min-height: auto;
-    max-width: 22rem;
-    width: min(100%, 22rem);
-    margin-top: 0.15rem;
-    padding-top: 0.9rem;
-    transform: none !important;
-  }
-
-  .hero-step,
-  .hero-rail--static .hero-step {
-    position: static;
-    inset: auto;
-  }
-
-  .hero-rail .hero-step:not(.hero-step--0),
-  .hero-rail--static .hero-step:not(.hero-step--0) {
     display: none;
   }
 
-  .hero-step h2 {
-    max-width: 15ch;
+  .hero-focus-inline {
+    display: grid;
+    width: min(100%, 22rem);
+    margin-top: 0.2rem;
   }
 
-  .hero-step p:last-child {
+  .hero-focus-inline__item p:last-child {
     max-width: 30ch;
   }
 
@@ -713,7 +752,7 @@
 
 @media (max-width: 720px) {
   .hero-track {
-    min-height: 220vh;
+    min-height: 180vh;
   }
 
   .hero-overlay {
@@ -739,51 +778,56 @@
     height: auto;
     min-height: auto;
     align-content: start;
-    gap: 1.1rem;
-    padding-top: 0.65rem;
+    gap: 1rem;
+    padding-top: 0.9rem;
   }
 
   .hero-copy {
     gap: 1rem;
     max-width: 100%;
+    padding-top: 0;
   }
 
   .hero-copy__body {
     gap: 0.75rem;
   }
 
+  .hero-stage {
+    --hero-poster-inset: 5.75rem -28% 18rem 52%;
+    --hero-poster-position: 67% 40%;
+    --hero-poster-shift: 0%;
+    --hero-atmosphere-inset: 8% -18% 18% 47%;
+    --hero-depth-inset: 12% -14% 18% 50%;
+    --hero-frame-inset: 5.75rem -30% 15rem 50%;
+    --hero-frame-origin: 72% 46%;
+    --hero-image-position: 67% 41%;
+  }
+
   .hero-poster {
-    inset: 7rem -44% 18rem 58%;
-    background-position: 70% 42%;
-    opacity: 0.2;
-    transform: none;
+    opacity: 0.16;
   }
 
   .hero-media__atmosphere {
-    inset: 9% -24% 18% 52%;
     filter: blur(22px);
   }
 
   .hero-media__frame {
-    inset: 6.5rem -46% 15rem 56%;
     filter: none;
-    transform-origin: 72% 48%;
   }
 
   .hero-media__image {
-    object-position: 70% 42%;
     opacity: 0.88;
   }
 
   .hero-copy__body h1 {
-    max-width: 7ch;
-    font-size: clamp(3rem, 16vw, 4.8rem);
+    max-width: 6.8ch;
+    font-size: clamp(3rem, 15.2vw, 4.6rem);
     line-height: 0.92;
   }
 
   .hero-copy__lede {
-    max-width: 21ch;
-    font-size: 1.0625rem;
+    max-width: 20ch;
+    font-size: 1rem;
   }
 
   .hero-copy__cta {
@@ -808,40 +852,31 @@
 
   .hero-rail,
   .hero-rail--static {
-    display: grid;
-    justify-self: stretch;
-    align-self: start;
-    min-height: auto;
-    max-width: none;
-    width: 100%;
-    padding-top: 0.85rem;
-    margin-top: 0.1rem;
-    transform: none !important;
-  }
-
-  .hero-step,
-  .hero-rail--static .hero-step {
-    position: static;
-    inset: auto;
-  }
-
-  .hero-rail .hero-step:not(.hero-step--0),
-  .hero-rail--static .hero-step:not(.hero-step--0) {
     display: none;
   }
 
-  .hero-rail__caption {
-    margin-bottom: 0.75rem;
+  .hero-focus-inline {
+    display: grid;
+    width: min(100%, 20rem);
+    margin-top: 0.15rem;
   }
 
-  .hero-step h2 {
+  .hero-focus-inline__caption {
+    margin-bottom: 0.72rem;
+  }
+
+  .hero-focus-inline__item {
+    gap: 0.15rem;
+  }
+
+  .hero-focus-inline__item h2 {
     max-width: 13ch;
-    font-size: clamp(1.3rem, 6vw, 1.62rem);
+    font-size: clamp(1.22rem, 5.4vw, 1.5rem);
   }
 
-  .hero-step p:last-child {
+  .hero-focus-inline__item p:last-child {
     max-width: 24ch;
-    font-size: 1rem;
+    font-size: 0.98rem;
     line-height: 1.55;
   }
 

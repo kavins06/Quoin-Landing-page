@@ -9,6 +9,8 @@ import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const primaryHeroStep = heroSteps[0]
+
 function App() {
   const pageRef = useRef(null)
   const heroTrackRef = useRef(null)
@@ -31,12 +33,161 @@ function App() {
 
       if (!prefersReducedMotion) {
         mm.add('(min-width: 1200px)', () => {
-          gsap.set(heroStepsNodes, { autoAlpha: 0, y: 18 })
-          gsap.set('.hero-step--0', { autoAlpha: 1, y: 0 })
+          gsap.set(heroStepsNodes, { autoAlpha: 0 })
+          gsap.set(heroStepsNodes[0], { autoAlpha: 1 })
           gsap.set(heroFrame, {
             autoAlpha: 1,
-            scale: 1,
-            xPercent: 3,
+            scale: 0.98,
+            xPercent: -22,
+            yPercent: 0,
+            rotation: 0,
+          })
+          gsap.set(heroRail, {
+            autoAlpha: 1,
+            xPercent: 0,
+            yPercent: 0,
+            x: 0,
+            y: 0,
+          })
+          gsap.set(ambientVeil, { opacity: 0.08 })
+          gsap.set(depthVeil, { opacity: 0.05, scale: 0.98 })
+
+          let activeHeroStep = 0
+
+          const setActiveHeroStep = (stepIndex) => {
+            if (stepIndex === activeHeroStep) {
+              return
+            }
+
+            activeHeroStep = stepIndex
+            heroStepsNodes.forEach((stepNode, index) => {
+              gsap.to(stepNode, {
+                autoAlpha: index === stepIndex ? 1 : 0,
+                duration: 0.2,
+                overwrite: 'auto',
+              })
+            })
+          }
+
+          const heroTimeline = gsap.timeline({
+            defaults: { ease: 'none' },
+            scrollTrigger: {
+              trigger: heroTrackRef.current,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: 0.9,
+              pin: '.hero-stage',
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              onUpdate: ({ progress }) => {
+                if (progress >= 0.48) {
+                  setActiveHeroStep(2)
+                  return
+                }
+
+                if (progress >= 0.24) {
+                  setActiveHeroStep(1)
+                  return
+                }
+
+                setActiveHeroStep(0)
+              },
+            },
+          })
+
+          heroTimeline
+            .to(
+              heroFrame,
+              {
+                scale: 1,
+                xPercent: -8,
+                yPercent: 0,
+                rotation: 0,
+                duration: 0.96,
+              },
+              0,
+            )
+            .to(
+              ambientVeil,
+              {
+                opacity: 0.11,
+                duration: 0.96,
+              },
+              0,
+            )
+            .to(
+              depthVeil,
+              {
+                opacity: 0.08,
+                scale: 1.01,
+                duration: 0.96,
+              },
+              0.08,
+            )
+            .to(
+              heroFrame,
+              {
+                scale: 1.02,
+                xPercent: -2,
+                yPercent: 0,
+                rotation: 0,
+                duration: 0.92,
+              },
+              0.94,
+            )
+            .to(
+              ambientVeil,
+              {
+                opacity: 0.14,
+                duration: 0.9,
+              },
+              0.94,
+            )
+            .to(
+              depthVeil,
+              {
+                opacity: 0.11,
+                scale: 1.02,
+                duration: 0.9,
+              },
+              0.94,
+            )
+            .to(
+              heroFrame,
+              {
+                scale: 1.035,
+                xPercent: 4,
+                yPercent: 0,
+                rotation: 0,
+                duration: 0.96,
+              },
+              1.74,
+            )
+            .to(
+              ambientVeil,
+              {
+                opacity: 0.16,
+                duration: 0.92,
+              },
+              1.74,
+            )
+            .to(
+              depthVeil,
+              {
+                opacity: 0.14,
+                scale: 1.032,
+                duration: 0.92,
+              },
+              1.74,
+            )
+        })
+
+        mm.add('(min-width: 721px) and (max-width: 1199px)', () => {
+          gsap.set(heroStepsNodes, { clearProps: 'all' })
+          gsap.set(heroFrame, {
+            autoAlpha: 1,
+            scale: 0.98,
+            xPercent: 6,
             yPercent: 0,
             rotation: 0,
           })
@@ -48,140 +199,7 @@ function App() {
             y: 0,
           })
           gsap.set(ambientVeil, { opacity: 0.1 })
-          gsap.set(depthVeil, { opacity: 0.06, scale: 1 })
-
-          const heroTimeline = gsap.timeline({
-            defaults: { ease: 'none' },
-            scrollTrigger: {
-              trigger: heroTrackRef.current,
-              start: 'top top',
-              end: 'bottom bottom',
-              scrub: 0.7,
-              pin: '.hero-stage',
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            },
-          })
-
-          heroTimeline
-            .to(
-              heroFrame,
-              {
-                scale: 1,
-                xPercent: -10,
-                yPercent: 0,
-                rotation: 0,
-                duration: 1.2,
-              },
-              0.1,
-            )
-            .to(
-              heroRail,
-              {
-                x: -28,
-                y: () => -window.innerHeight * 0.18,
-                duration: 1.2,
-              },
-              0.1,
-            )
-            .to(
-              ambientVeil,
-              {
-                opacity: 0.14,
-                duration: 1.2,
-              },
-              0.1,
-            )
-            .to('.hero-step--0', { autoAlpha: 0, y: -16, duration: 0.24 }, 1.18)
-            .to('.hero-step--1', { autoAlpha: 1, y: 0, duration: 0.24 }, 1.28)
-            .to(
-              heroFrame,
-              {
-                scale: 1,
-                xPercent: -20,
-                yPercent: 0,
-                rotation: 0,
-                duration: 1.12,
-              },
-              1.34,
-            )
-            .to(
-              heroRail,
-              {
-                x: -36,
-                y: () => -window.innerHeight * 0.23,
-                duration: 1.08,
-              },
-              1.34,
-            )
-            .to(
-              depthVeil,
-              {
-                opacity: 0.11,
-                scale: 1.014,
-                duration: 1.08,
-              },
-              1.34,
-            )
-            .to('.hero-step--1', { autoAlpha: 0, y: -16, duration: 0.24 }, 2.22)
-            .to('.hero-step--2', { autoAlpha: 1, y: 0, duration: 0.24 }, 2.32)
-            .to(
-              heroFrame,
-              {
-                scale: 1,
-                xPercent: -30,
-                yPercent: 0,
-                rotation: 0,
-                duration: 1.18,
-              },
-              2.34,
-            )
-            .to(
-              heroRail,
-              {
-                x: -44,
-                y: () => -window.innerHeight * 0.25,
-                duration: 1.08,
-              },
-              2.34,
-            )
-            .to(
-              ambientVeil,
-              {
-                opacity: 0.18,
-                duration: 1.08,
-              },
-              2.34,
-            )
-            .to(
-              depthVeil,
-              {
-                opacity: 0.16,
-                scale: 1.028,
-                duration: 1.08,
-              },
-              2.34,
-            )
-        })
-
-        mm.add('(min-width: 721px) and (max-width: 1199px)', () => {
-          gsap.set(heroStepsNodes, { clearProps: 'all' })
-          gsap.set(heroFrame, {
-            autoAlpha: 1,
-            scale: 1,
-            xPercent: -2,
-            yPercent: 0,
-            rotation: 0,
-          })
-          gsap.set(heroRail, {
-            autoAlpha: 1,
-            xPercent: 0,
-            yPercent: 0,
-            x: 0,
-            y: 0,
-          })
-          gsap.set(ambientVeil, { opacity: 0.12 })
-          gsap.set(depthVeil, { opacity: 0.08, scale: 1 })
+          gsap.set(depthVeil, { opacity: 0.07, scale: 0.99 })
 
           gsap.timeline({
             defaults: { ease: 'none' },
@@ -189,67 +207,7 @@ function App() {
               trigger: heroTrackRef.current,
               start: 'top top',
               end: 'bottom bottom',
-              scrub: 0.8,
-              pin: '.hero-stage',
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            },
-          })
-            .to(
-              heroFrame,
-              {
-                scale: 1.018,
-                xPercent: -12,
-                yPercent: -0.5,
-                duration: 1.6,
-              },
-              0,
-            )
-            .to(
-              ambientVeil,
-              {
-                opacity: 0.17,
-                duration: 1.4,
-              },
-              0,
-            )
-            .to(
-              depthVeil,
-              {
-                opacity: 0.13,
-                scale: 1.018,
-                duration: 1.4,
-              },
-              0.18,
-            )
-        })
-
-        mm.add('(max-width: 720px)', () => {
-          gsap.set(heroStepsNodes, { clearProps: 'all' })
-          gsap.set(heroFrame, {
-            autoAlpha: 1,
-            scale: 1,
-            xPercent: 12,
-            yPercent: 0,
-            rotation: 0,
-          })
-          gsap.set(heroRail, {
-            autoAlpha: 1,
-            xPercent: 0,
-            yPercent: 0,
-            x: 0,
-            y: 0,
-          })
-          gsap.set(ambientVeil, { opacity: 0.13 })
-          gsap.set(depthVeil, { opacity: 0.08, scale: 1 })
-
-          gsap.timeline({
-            defaults: { ease: 'none' },
-            scrollTrigger: {
-              trigger: heroTrackRef.current,
-              start: 'top top',
-              end: 'bottom bottom',
-              scrub: 0.65,
+              scrub: 0.75,
               pin: '.hero-stage',
               anticipatePin: 1,
               invalidateOnRefresh: true,
@@ -259,26 +217,86 @@ function App() {
               heroFrame,
               {
                 scale: 1.01,
-                xPercent: 4,
+                xPercent: 0,
                 yPercent: 0,
-                duration: 1.15,
+                duration: 1.4,
               },
               0,
             )
             .to(
               ambientVeil,
               {
-                opacity: 0.18,
-                duration: 1.05,
+                opacity: 0.14,
+                duration: 1.3,
               },
               0,
             )
             .to(
               depthVeil,
               {
-                opacity: 0.12,
-                scale: 1.012,
+                opacity: 0.11,
+                scale: 1.015,
+                duration: 1.3,
+              },
+              0.18,
+            )
+        })
+
+        mm.add('(max-width: 720px)', () => {
+          gsap.set(heroStepsNodes, { clearProps: 'all' })
+          gsap.set(heroFrame, {
+            autoAlpha: 1,
+            scale: 0.985,
+            xPercent: 10,
+            yPercent: 0,
+            rotation: 0,
+          })
+          gsap.set(heroRail, {
+            autoAlpha: 1,
+            xPercent: 0,
+            yPercent: 0,
+            x: 0,
+            y: 0,
+          })
+          gsap.set(ambientVeil, { opacity: 0.1 })
+          gsap.set(depthVeil, { opacity: 0.06, scale: 0.99 })
+
+          gsap.timeline({
+            defaults: { ease: 'none' },
+            scrollTrigger: {
+              trigger: heroTrackRef.current,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: 0.55,
+              pin: '.hero-stage',
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            },
+          })
+            .to(
+              heroFrame,
+              {
+                scale: 1.005,
+                xPercent: 4,
+                yPercent: 0,
                 duration: 1.05,
+              },
+              0,
+            )
+            .to(
+              ambientVeil,
+              {
+                opacity: 0.14,
+                duration: 1.02,
+              },
+              0,
+            )
+            .to(
+              depthVeil,
+              {
+                opacity: 0.1,
+                scale: 1.008,
+                duration: 1.02,
               },
               0.12,
             )
@@ -367,6 +385,21 @@ function App() {
                       Review the operating model
                     </a>
                   </div>
+
+                  <section
+                    className="hero-focus-inline"
+                    aria-label="Current focus"
+                  >
+                    <span className="hero-focus-inline__caption">Current focus</span>
+                    <article className="hero-focus-inline__item">
+                      <p className="hero-step__label">
+                        <span>{primaryHeroStep.index}</span>
+                        {primaryHeroStep.label}
+                      </p>
+                      <h2>{primaryHeroStep.title}</h2>
+                      <p>{primaryHeroStep.body}</p>
+                    </article>
+                  </section>
                 </div>
 
                 <aside
