@@ -1,71 +1,114 @@
 export const heroSteps = [
   {
     index: '01',
-    label: 'Benchmarking',
-    title: 'Establish a clean benchmarking baseline.',
+    label: 'Coverage',
+    title: 'Know which buildings are in scope and what data is missing.',
     body:
-      'Quoin normalizes utility and building inputs into a reviewable record before filing windows tighten.',
+      'Quoin centralizes building records, utility inputs, and account coverage before reporting work starts.',
   },
   {
     index: '02',
-    label: 'BEPS + QA',
-    title: 'Track BEPS pressure without losing the audit trail.',
+    label: 'Data QA',
+    title: 'Catch missing, implausible, and inconsistent benchmarking data early.',
     body:
-      'Teams can inspect anomalies, validate assumptions, and see where current performance puts obligation at risk.',
+      'Teams can review anomalies, document assumptions, and keep a defensible record before Portfolio Manager submission.',
   },
   {
     index: '03',
-    label: 'Penalty Forecasting',
-    title: 'Forecast exposure while there is still time to act.',
+    label: 'Submission Readiness',
+    title: 'Move into filing week with a report-ready record.',
     body:
-      'Penalty scenarios stay tied to current conditions, making portfolio decisions easier to defend.',
+      'Quoin keeps the benchmark organized, reviewable, and ready for handoff or submission before the deadline.',
   },
 ]
 
 export const heroContent = {
-  eyebrow: 'Regulatory-grade compliance for DC buildings over 10,000 sq ft',
-  headline: 'Operational clarity for every reporting cycle.',
+  eyebrow: 'Regulatory-grade benchmarking for DC buildings over 10,000 sq ft',
+  headline: 'DC energy benchmarking, without the annual scramble.',
   ledeDesktop:
-    'Quoin automates benchmarking, BEPS compliance, data QA, and penalty forecasting so owners, asset managers, and operators can act before deadlines become liabilities.',
+    'Quoin helps owners, operators, consultants, and asset managers collect utility data, QA records, and prepare Portfolio Manager submissions before the May 1 deadline.',
   ledeMobile:
-    'Quoin automates benchmarking, BEPS compliance, data QA, and penalty forecasting for DC owners and operators.',
+    'Quoin helps DC teams prepare clean benchmarking submissions before the May 1 deadline.',
   support:
-    'For owners, asset managers, and operators managing DC reporting cycles.',
-  secondaryLink: 'Review the operating model',
+    'Built for Washington, DC teams reporting through ENERGY STAR Portfolio Manager.',
+  primaryCta: 'Request a demo',
+  secondaryLink: 'See DC benchmarking requirements',
 }
+
+export const heroNavLinks = [
+  {
+    href: '/dc-energy-benchmarking/',
+    label: 'DC Benchmarking',
+  },
+  {
+    href: '/dc-benchmarking-deadlines-verification/',
+    label: 'Deadlines & Verification',
+  },
+  {
+    href: '/dc-energy-benchmarking-guide/',
+    label: '2026 Guide',
+  },
+]
+
+export const searchCards = [
+  {
+    href: '/dc-energy-benchmarking/',
+    eyebrow: 'DC benchmarking',
+    title: 'Understand who is covered, what May 1 means, and where Portfolio Manager fits.',
+    body:
+      'Start with the core District reporting rule set for covered buildings and the annual benchmarking workflow.',
+    cta: 'Read the benchmarking page',
+  },
+  {
+    href: '/dc-benchmarking-deadlines-verification/',
+    eyebrow: 'Deadlines & verification',
+    title: 'Get the current deadline, verification cadence, and prep timeline in one place.',
+    body:
+      'Use the operational page for May 1 reporting, the May 1, 2027 verification return, and a cleaner prep checklist.',
+    cta: 'Read the deadlines page',
+  },
+  {
+    href: '/dc-energy-benchmarking-guide/',
+    eyebrow: '2026 guide',
+    title: 'Resolve conflicting official snippets before they turn into reporting mistakes.',
+    body:
+      'Use the citation-first guide when teams need the current dates, the older inconsistencies, and one practical explanation.',
+    cta: 'Open the guide',
+  },
+]
 
 export const sections = [
   {
-    id: 'platform',
+    id: 'workflow',
     index: '01',
-    eyebrow: 'Benchmarking / Compliance Clarity',
-    title: 'Benchmarking that arrives clean enough to trust before filing week.',
+    eyebrow: 'Benchmarking / Intake / QA',
+    title: 'From scattered utility data to a submission-ready benchmark.',
     body:
-      'Quoin structures utility intake, resolves anomalies, and keeps reporting logic visible so portfolio teams can move from raw data to a submission-ready record with less ambiguity.',
+      'Quoin structures utility intake, normalizes building records, and keeps reporting logic visible so teams can move from raw data to a clean annual benchmark with less ambiguity.',
     points: [
-      'Portfolio intake and normalization across building records and utility streams.',
+      'Portfolio intake across building records, utility accounts, and usage periods.',
       'QA checks that flag missing, implausible, or inconsistent values before they propagate.',
-      'Clear reporting workflows for teams that need answers without becoming software specialists.',
+      'A reviewable record that is easier to hand off internally or use for submission.',
     ],
     noteLabel: 'Why it matters',
     note:
-      'Owners and operators do not need another dashboard. They need a dependable operating view that reduces last-minute interpretation.',
+      'Benchmarking problems usually start months before the filing window. Quoin makes them visible early.',
   },
   {
-    id: 'forecasting',
+    id: 'verification',
     index: '02',
-    eyebrow: 'BEPS / QA / Forecasting',
-    title: 'See BEPS pressure, data quality, and likely penalty exposure in one view.',
+    eyebrow: 'Verification / Portfolio Manager / Audit trail',
+    title: 'Stay ready for third-party verification and deadline questions.',
     body:
-      'Instead of working backward from regulatory deadlines, Quoin lets teams monitor building status continuously and understand which assets need attention now.',
+      'Quoin helps teams maintain a defensible record around assumptions, anomalies, and source data so verification and reporting conversations do not start from scratch.',
     points: [
-      'BEPS monitoring grounded in current building performance and compliance context.',
-      'Penalty forecasting that gives leadership a clearer view of likely exposure before deadlines arrive.',
-      'Shared visibility for ownership, asset management, and site operations without translation overhead.',
+      'Clear documentation around unusual values and data decisions.',
+      'Shared visibility for consultants, operators, and ownership teams.',
+      'Cleaner handoff into Portfolio Manager reporting and verification prep.',
     ],
     noteLabel: 'Operating effect',
     note:
-      'The platform is designed to support decisions, not just generate reports. That makes handoffs cleaner and portfolio reviews faster.',
+      'The goal is not another dashboard. It is a calmer annual reporting process.',
   },
 ]
 
@@ -73,7 +116,7 @@ export const trustSignals = [
   {
     label: 'Regulatory-grade',
     body:
-      'Built for repeatable compliance work where data lineage, validation, and auditability matter.',
+      'Built for repeatable benchmarking work where data lineage, validation, and auditability matter.',
   },
   {
     label: 'Portfolio-ready',
@@ -83,6 +126,6 @@ export const trustSignals = [
   {
     label: 'Approachable',
     body:
-      'Clear enough for non-technical real estate stakeholders without flattening the complexity underneath.',
+      'Clear enough for non-technical real estate stakeholders without flattening the compliance complexity underneath.',
   },
 ]

@@ -1,26 +1,36 @@
-# Quoin Codespaces Setup
+# Narrow Quoin to a DC Benchmarking-First Site
 
-Setup thesis: make the repo cloud-workspace ready so it can be opened in GitHub Codespaces, bootstrapped automatically, and used as the primary execution environment instead of a local device.
-
-Delivery plan:
-- Add a dev container configuration for Node/Vite development.
-- Forward the Vite dev port and install dependencies on first launch.
-- Replace the placeholder README with repo-specific setup and a mobile-friendly GitHub-first workflow.
+Implementation thesis: replace the mixed benchmarking/BEPS homepage and search IA with a benchmarking-first wedge, introduce the new canonical route set, and convert the old BEPS-focused URLs into bridge pages so the site stops splitting search signals.
 
 ## Tasks
 
-- [DONE] Add Codespaces/devcontainer support for this Vite app, including dependency bootstrap and forwarded ports.
-- [DONE] Replace the generic README with project-specific setup, Codespaces usage, and a GitHub-first mobile workflow.
-- [DONE] Verify with `npm run lint` and `npm run build`.
+- [DONE] Rewrite homepage content and metadata around DC energy benchmarking only.
+- [DONE] Replace homepage nav, signal, and search module links so they point only to the new benchmarking-first routes.
+- [DONE] Add canonical static pages for `/dc-benchmarking-deadlines-verification/` and `/dc-energy-benchmarking-guide/`.
+- [DONE] Rewrite `/dc-energy-benchmarking/` to the new benchmarking-first brief.
+- [DONE] Convert `/dc-beps-compliance/` and `/dc-energy-benchmarking-beps-guide/` into bridge pages with canonical/noindex behavior.
+- [DONE] Update shared static-page navigation, sitemap, and Vite multi-page inputs to the new IA.
+- [DONE] Verify with `npm run lint` and `npm run build`, and confirm all six route outputs are present in `dist/`.
 
 ## Files
 
-- `.devcontainer/devcontainer.json`
-- `README.md`
+- `index.html`
+- `src/App.jsx`
+- `src/content.js`
+- `vite.config.js`
+- `public/sitemap.xml`
+- `dc-energy-benchmarking/index.html`
+- `dc-benchmarking-deadlines-verification/index.html`
+- `dc-energy-benchmarking-guide/index.html`
+- `dc-beps-compliance/index.html`
+- `dc-energy-benchmarking-beps-guide/index.html`
 
 ## Acceptance Criteria
 
-- Opening the repo in Codespaces installs dependencies and exposes the Vite dev server port cleanly.
-- The README explains how to start, test, preview, and push from a cloud workspace.
-- The README also explains the practical mobile workflow for using Codex with a GitHub-hosted workspace.
-- `npm run lint` and `npm run build` pass.
+- The homepage no longer markets Quoin as broad compliance software or promotes BEPS/penalty forecasting as co-equal promises.
+- The homepage nav and three-card search module point only to `/dc-energy-benchmarking/`, `/dc-benchmarking-deadlines-verification/`, and `/dc-energy-benchmarking-guide/`.
+- The canonical static pages expose visible semantic content, correct canonical tags, and page-specific JSON-LD without requiring JS.
+- The legacy BEPS URLs publish as bridge pages with canonical/noindex behavior and a visible fallback path to the new guide.
+- `public/sitemap.xml` lists only `/`, `/dc-energy-benchmarking/`, `/dc-benchmarking-deadlines-verification/`, and `/dc-energy-benchmarking-guide/`.
+- `npm run lint` passes.
+- `npm run build` passes.

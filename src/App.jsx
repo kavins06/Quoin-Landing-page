@@ -4,7 +4,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './App.css'
 import HeroScene from './components/HeroScene'
 import SectionBlock from './components/SectionBlock'
-import { heroContent, heroSteps, sections, trustSignals } from './content'
+import {
+  heroContent,
+  heroNavLinks,
+  heroSteps,
+  searchCards,
+  sections,
+  trustSignals,
+} from './content'
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -301,13 +308,26 @@ function App() {
                 <a className="hero-chrome__brand" href="#top">
                   Quoin
                 </a>
-                <p className="hero-chrome__meta">DC compliance intelligence</p>
+                <div className="hero-chrome__group">
+                  <nav className="hero-chrome__nav" aria-label="Hero guide navigation">
+                    {heroNavLinks.map((link) => (
+                      <a key={link.href} href={link.href}>
+                        {link.label}
+                      </a>
+                    ))}
+                    <a className="hero-chrome__nav-cta" href="#cta">
+                      {heroContent.primaryCta}
+                    </a>
+                  </nav>
+                </div>
               </header>
 
               <div className="hero-layout">
                 <div className="hero-copy">
                   <div className="hero-copy__body">
-                    <p className="hero-copy__eyebrow">{heroContent.eyebrow}</p>
+                    {heroContent.eyebrow ? (
+                      <p className="hero-copy__eyebrow">{heroContent.eyebrow}</p>
+                    ) : null}
                     <h1>{heroContent.headline}</h1>
                     <p className="hero-copy__lede hero-copy__lede--desktop">
                       {heroContent.ledeDesktop}
@@ -320,10 +340,10 @@ function App() {
                   <div className="hero-mobile-composition">
                     <section
                       className="hero-focus-inline"
-                      aria-label="Current focus"
+                      aria-label="How Quoin works"
                     >
                       <span className="hero-focus-inline__caption">
-                        Current focus
+                        How Quoin works
                       </span>
                       <article className="hero-focus-inline__item">
                         <p className="hero-step__label">
@@ -338,7 +358,7 @@ function App() {
 
                   <div className="hero-copy__secondary">
                     <p className="hero-copy__support">{heroContent.support}</p>
-                    <a className="button-link" href="#platform">
+                    <a className="button-link" href="/dc-energy-benchmarking/">
                       {heroContent.secondaryLink}
                     </a>
                   </div>
@@ -348,7 +368,7 @@ function App() {
                   className={`hero-rail ${prefersReducedMotion ? 'hero-rail--static' : ''}`}
                   aria-label="Scroll narrative"
                 >
-                  <span className="hero-rail__caption">Current focus</span>
+                  <span className="hero-rail__caption">How Quoin works</span>
                   {heroSteps.map((step, index) => (
                     <article
                       key={step.label}
@@ -371,12 +391,41 @@ function App() {
 
       <section className="signal-strip section-panel" aria-label="Core platform areas">
         <div className="signal-strip__inner">
-          <p className="signal-strip__label content-reveal">Quoin / Platform Scope</p>
+          <p className="signal-strip__label content-reveal">Quoin / Benchmarking workflow</p>
           <div className="signal-strip__items">
-            <span className="content-reveal">Benchmarking automation</span>
-            <span className="content-reveal">BEPS compliance tracking</span>
-            <span className="content-reveal">Data QA workflows</span>
-            <span className="content-reveal">Penalty forecasting</span>
+            <span className="content-reveal">Coverage review</span>
+            <span className="content-reveal">Utility data intake</span>
+            <span className="content-reveal">Benchmarking QA</span>
+            <span className="content-reveal">Submission readiness</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="search-module section-panel" aria-label="DC search guides">
+        <div className="search-module__inner">
+          <div className="search-module__intro">
+            <p className="signal-strip__label content-reveal">Quoin / Search-ready guides</p>
+            <h2 className="content-reveal">
+              Start with the District benchmarking question you already have.
+            </h2>
+            <p className="content-reveal">
+              These three source-visible pages are built for owners, operators,
+              consultants, and asset managers who need the current rule set
+              without wading through stale snippets.
+            </p>
+          </div>
+
+          <div className="search-module__grid">
+            {searchCards.map((card) => (
+              <article key={card.href} className="search-card content-reveal">
+                <p className="search-card__eyebrow">{card.eyebrow}</p>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+                <a className="button-link" href={card.href}>
+                  {card.cta}
+                </a>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -390,18 +439,18 @@ function App() {
           <div className="trust-panel__meta content-reveal">
             <span className="section-block__index">03</span>
             <span className="section-block__eyebrow">
-              Trust / Regulatory-grade operating model
+              Trust / Benchmarking operating model
             </span>
           </div>
 
           <div className="trust-panel__content">
             <h2 className="content-reveal">
-              Built for repeatable compliance, not a once-a-year scramble.
+              Built for repeatable benchmarking, not a once-a-year scramble.
             </h2>
             <p className="content-reveal">
               Quoin turns fragmented reporting work into a calmer operating
-              system. The platform stays serious enough for regulatory pressure
-              and approachable enough for cross-functional real estate teams.
+              system. It stays serious enough for deadline pressure and
+              approachable enough for cross-functional real estate teams.
             </p>
 
             <div className="trust-grid">
@@ -422,7 +471,7 @@ function App() {
           <h2>Bring every building into view before the deadline does.</h2>
           <p>
             Start with one portfolio, one reporting cycle, and a clearer answer
-            to what needs attention now.
+            to what needs attention before May 1.
           </p>
 
           <div className="cta-panel__actions">
