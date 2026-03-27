@@ -8,7 +8,6 @@ import {
   heroContent,
   heroNavLinks,
   heroSteps,
-  searchCards,
   sections,
   trustSignals,
 } from './content'
@@ -340,10 +339,10 @@ function App() {
                   <div className="hero-mobile-composition">
                     <section
                       className="hero-focus-inline"
-                      aria-label="How Quoin works"
+                      aria-label="Workflow"
                     >
                       <span className="hero-focus-inline__caption">
-                        How Quoin works
+                        Workflow
                       </span>
                       <article className="hero-focus-inline__item">
                         <p className="hero-step__label">
@@ -356,19 +355,14 @@ function App() {
                     </section>
                   </div>
 
-                  <div className="hero-copy__secondary">
-                    <p className="hero-copy__support">{heroContent.support}</p>
-                    <a className="button-link" href="/dc-energy-benchmarking/">
-                      {heroContent.secondaryLink}
-                    </a>
-                  </div>
+                  <p className="hero-copy__support">{heroContent.support}</p>
                 </div>
 
                 <aside
                   className={`hero-rail ${prefersReducedMotion ? 'hero-rail--static' : ''}`}
                   aria-label="Scroll narrative"
                 >
-                  <span className="hero-rail__caption">How Quoin works</span>
+                  <span className="hero-rail__caption">Workflow</span>
                   {heroSteps.map((step, index) => (
                     <article
                       key={step.label}
@@ -389,47 +383,6 @@ function App() {
         </div>
       </section>
 
-      <section className="signal-strip section-panel" aria-label="Core platform areas">
-        <div className="signal-strip__inner">
-          <p className="signal-strip__label content-reveal">Quoin / Benchmarking workflow</p>
-          <div className="signal-strip__items">
-            <span className="content-reveal">Coverage review</span>
-            <span className="content-reveal">Utility data intake</span>
-            <span className="content-reveal">Benchmarking QA</span>
-            <span className="content-reveal">Submission readiness</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="search-module section-panel" aria-label="DC search guides">
-        <div className="search-module__inner">
-          <div className="search-module__intro">
-            <p className="signal-strip__label content-reveal">Quoin / Search-ready guides</p>
-            <h2 className="content-reveal">
-              Start with the District benchmarking question you already have.
-            </h2>
-            <p className="content-reveal">
-              These three source-visible pages are built for owners, operators,
-              consultants, and asset managers who need the current rule set
-              without wading through stale snippets.
-            </p>
-          </div>
-
-          <div className="search-module__grid">
-            {searchCards.map((card) => (
-              <article key={card.href} className="search-card content-reveal">
-                <p className="search-card__eyebrow">{card.eyebrow}</p>
-                <h3>{card.title}</h3>
-                <p>{card.body}</p>
-                <a className="button-link" href={card.href}>
-                  {card.cta}
-                </a>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {sections.map((section) => (
         <SectionBlock key={section.id} section={section} />
       ))}
@@ -439,18 +392,17 @@ function App() {
           <div className="trust-panel__meta content-reveal">
             <span className="section-block__index">03</span>
             <span className="section-block__eyebrow">
-              Trust / Benchmarking operating model
+              Proof
             </span>
           </div>
 
           <div className="trust-panel__content">
             <h2 className="content-reveal">
-              Built for repeatable benchmarking, not a once-a-year scramble.
+              Calm enough to use. Serious enough for the deadline.
             </h2>
             <p className="content-reveal">
-              Quoin turns fragmented reporting work into a calmer operating
-              system. It stays serious enough for deadline pressure and
-              approachable enough for cross-functional real estate teams.
+              Quoin gives DC teams one clearer view of what is ready, what is
+              missing, and what still needs attention.
             </p>
 
             <div className="trust-grid">
@@ -467,19 +419,15 @@ function App() {
 
       <section id="cta" className="cta-panel">
         <div className="cta-panel__inner">
-          <p className="cta-panel__eyebrow">Quoin / Request a walkthrough</p>
-          <h2>Bring every building into view before the deadline does.</h2>
+          <p className="cta-panel__eyebrow">Request a walkthrough</p>
+          <h2>See what needs attention before May 1.</h2>
           <p>
-            Start with one portfolio, one reporting cycle, and a clearer answer
-            to what needs attention before May 1.
+            Quoin helps DC teams get the benchmark cleaner before filing week compresses every decision.
           </p>
 
           <div className="cta-panel__actions">
             <a className="button button--primary" href="mailto:hello@quoin.com">
-              Contact sales
-            </a>
-            <a className="button button--secondary" href="#top">
-              Return to top
+              Request a walkthrough
             </a>
           </div>
         </div>
