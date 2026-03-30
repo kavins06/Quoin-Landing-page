@@ -34,12 +34,121 @@ function App() {
       const ambientVeil = scope.querySelector('.hero-media__veil--ambient')
       const depthVeil = scope.querySelector('.hero-media__veil--depth')
       const heroRail = scope.querySelector('.hero-rail')
+      const heroRailViewport = scope.querySelector('.hero-rail__viewport')
       const heroStepsNodes = scope.querySelectorAll('.hero-step')
 
       if (!prefersReducedMotion) {
         mm.add('(min-width: 1200px)', () => {
-          gsap.set(heroStepsNodes, { autoAlpha: 0 })
-          gsap.set(heroStepsNodes[0], { autoAlpha: 1 })
+          const railTransitionConfig = {
+            enterDuration: 0.42,
+            enterEase: 'power3.out',
+            exitDuration: 0.34,
+            exitEase: 'power2.in',
+            offsetPercent: 18,
+          }
+          let activeHeroStep = 0
+          let railTransition = null
+
+          const syncHeroRailViewport = () => {
+            if (!heroRailViewport) {
+              return
+            }
+
+            let maxHeight = 0
+            heroStepsNodes.forEach((stepNode) => {
+              maxHeight = Math.max(
+                maxHeight,
+                stepNode.scrollHeight,
+                stepNode.offsetHeight,
+              )
+            })
+
+            if (maxHeight > 0) {
+              gsap.set(heroRailViewport, { height: maxHeight + 10 })
+            }
+          }
+
+          const setActiveHeroStep = (stepIndex) => {
+            if (stepIndex === activeHeroStep) {
+              return
+            }
+
+            const previousStepIndex = activeHeroStep
+            const previousStepNode = heroStepsNodes[previousStepIndex]
+            const nextStepNode = heroStepsNodes[stepIndex]
+            activeHeroStep = stepIndex
+
+            if (railTransition) {
+              railTransition.kill()
+            }
+
+            heroStepsNodes.forEach((stepNode, index) => {
+              if (index !== previousStepIndex && index !== stepIndex) {
+                gsap.set(stepNode, {
+                  yPercent: railTransitionConfig.offsetPercent,
+                  autoAlpha: 0,
+                  zIndex: 0,
+                })
+              }
+            })
+
+            gsap.set(previousStepNode, {
+              yPercent: 0,
+              autoAlpha: 1,
+              zIndex: 1,
+            })
+            gsap.set(nextStepNode, {
+              yPercent: railTransitionConfig.offsetPercent,
+              autoAlpha: 0,
+              zIndex: 2,
+            })
+
+            railTransition = gsap.timeline({
+              defaults: { overwrite: 'auto' },
+              onComplete: () => {
+                gsap.set(previousStepNode, {
+                  yPercent: railTransitionConfig.offsetPercent,
+                  autoAlpha: 0,
+                  zIndex: 0,
+                })
+                gsap.set(nextStepNode, {
+                  yPercent: 0,
+                  autoAlpha: 1,
+                  zIndex: 1,
+                })
+                railTransition = null
+              },
+            })
+
+            railTransition
+              .to(
+                previousStepNode,
+                {
+                  yPercent: -railTransitionConfig.offsetPercent,
+                  autoAlpha: 0,
+                  duration: railTransitionConfig.exitDuration,
+                  ease: railTransitionConfig.exitEase,
+                },
+                0,
+              )
+              .to(
+                nextStepNode,
+                {
+                  yPercent: 0,
+                  autoAlpha: 1,
+                  duration: railTransitionConfig.enterDuration,
+                  ease: railTransitionConfig.enterEase,
+                },
+                0,
+              )
+          }
+
+          gsap.set(heroStepsNodes, {
+            yPercent: railTransitionConfig.offsetPercent,
+            autoAlpha: 0,
+            zIndex: 0,
+          })
+          gsap.set(heroStepsNodes[0], { yPercent: 0, autoAlpha: 1, zIndex: 1 })
           gsap.set(heroFrame, {
             autoAlpha: 1,
             scale: 0.98,
@@ -56,23 +165,8 @@ function App() {
           })
           gsap.set(ambientVeil, { opacity: 0.08 })
           gsap.set(depthVeil, { opacity: 0.05, scale: 0.98 })
-
-          let activeHeroStep = 0
-
-          const setActiveHeroStep = (stepIndex) => {
-            if (stepIndex === activeHeroStep) {
-              return
-            }
-
-            activeHeroStep = stepIndex
-            heroStepsNodes.forEach((stepNode, index) => {
-              gsap.to(stepNode, {
-                autoAlpha: index === stepIndex ? 1 : 0,
-                duration: 0.2,
-                overwrite: 'auto',
-              })
-            })
-          }
+          syncHeroRailViewport()
+          ScrollTrigger.addEventListener('refreshInit', syncHeroRailViewport)
 
           const heroTimeline = gsap.timeline({
             defaults: { ease: 'none' },
@@ -185,6 +279,11 @@ function App() {
               },
               1.74,
             )
+
+          return () => {
+            ScrollTrigger.removeEventListener('refreshInit', syncHeroRailViewport)
+            railTransition?.kill()
+          }
         })
 
         mm.add('(min-width: 721px) and (max-width: 1199px)', () => {
@@ -249,13 +348,104 @@ function App() {
 
         mm.add('(max-width: 720px)', () => {
           gsap.set(heroStepsNodes, { clearProps: 'all' })
+          gsap.set(heroRailViewport, { clearProps: 'all' })
           gsap.set(heroFrame, { clearProps: 'all' })
           gsap.set(heroRail, { clearProps: 'all' })
           gsap.set(ambientVeil, { clearProps: 'all' })
           gsap.set(depthVeil, { clearProps: 'all' })
         })
       } else {
+        mm.add('(min-width: 1200px)', () => {
+          const fadeDuration = 0.2
+          let activeHeroStep = 0
+
+          const syncHeroRailViewport = () => {
+            if (!heroRailViewport) {
+              return
+            }
+
+            let maxHeight = 0
+            heroStepsNodes.forEach((stepNode) => {
+              maxHeight = Math.max(
+                maxHeight,
+                stepNode.scrollHeight,
+                stepNode.offsetHeight,
+              )
+            })
+
+            if (maxHeight > 0) {
+              gsap.set(heroRailViewport, { height: maxHeight + 10 })
+            }
+          }
+
+          const setActiveHeroStep = (stepIndex) => {
+            if (stepIndex === activeHeroStep) {
+              return
+            }
+
+            activeHeroStep = stepIndex
+            heroStepsNodes.forEach((stepNode, index) => {
+              gsap.to(stepNode, {
+                autoAlpha: index === stepIndex ? 1 : 0,
+                duration: fadeDuration,
+                overwrite: 'auto',
+              })
+            })
+          }
+
+          gsap.set(heroStepsNodes, {
+            yPercent: 0,
+            autoAlpha: 0,
+            zIndex: 0,
+          })
+          gsap.set(heroStepsNodes[0], { autoAlpha: 1, zIndex: 1 })
+          gsap.set(heroFrame, { clearProps: 'all' })
+          gsap.set(heroRail, { clearProps: 'all' })
+          gsap.set(ambientVeil, { clearProps: 'all' })
+          gsap.set(depthVeil, { clearProps: 'all' })
+          syncHeroRailViewport()
+          ScrollTrigger.addEventListener('refreshInit', syncHeroRailViewport)
+
+          const trigger = ScrollTrigger.create({
+            trigger: heroTrackRef.current,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.1,
+            pin: '.hero-stage',
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: ({ progress }) => {
+              if (progress >= 0.48) {
+                setActiveHeroStep(2)
+                return
+              }
+
+              if (progress >= 0.24) {
+                setActiveHeroStep(1)
+                return
+              }
+
+              setActiveHeroStep(0)
+            },
+          })
+
+          return () => {
+            ScrollTrigger.removeEventListener('refreshInit', syncHeroRailViewport)
+            trigger.kill()
+          }
+        })
+
+        mm.add('(max-width: 1199px)', () => {
+          gsap.set(heroStepsNodes, { clearProps: 'all' })
+          gsap.set(heroRailViewport, { clearProps: 'all' })
+          gsap.set(heroFrame, { clearProps: 'all' })
+          gsap.set(heroRail, { clearProps: 'all' })
+          gsap.set(ambientVeil, { clearProps: 'all' })
+          gsap.set(depthVeil, { clearProps: 'all' })
+        })
+
         gsap.set(heroStepsNodes, { clearProps: 'all' })
+        gsap.set(heroRailViewport, { clearProps: 'all' })
         gsap.set(heroFrame, { clearProps: 'all' })
         gsap.set(heroRail, { clearProps: 'all' })
         gsap.set(ambientVeil, { clearProps: 'all' })
@@ -294,7 +484,7 @@ function App() {
     >
       <section
         ref={heroTrackRef}
-        className={`hero-track ${prefersReducedMotion ? 'hero-track--static' : ''}`}
+        className="hero-track"
       >
         <div className="hero-stage">
           <div className="hero-atmosphere" />
@@ -314,10 +504,10 @@ function App() {
                         {link.label}
                       </a>
                     ))}
-                    <a className="hero-chrome__nav-cta" href="#cta">
-                      {heroContent.primaryCta}
-                    </a>
                   </nav>
+                  <a className="hero-chrome__cta" href="#cta">
+                    {heroContent.primaryCta}
+                  </a>
                 </div>
               </header>
 
@@ -359,23 +549,25 @@ function App() {
                 </div>
 
                 <aside
-                  className={`hero-rail ${prefersReducedMotion ? 'hero-rail--static' : ''}`}
+                  className="hero-rail"
                   aria-label="Scroll narrative"
                 >
                   <span className="hero-rail__caption">Workflow</span>
-                  {heroSteps.map((step, index) => (
-                    <article
-                      key={step.label}
-                      className={`hero-step hero-step--${index}`}
-                    >
-                      <p className="hero-step__label">
-                        <span>{step.index}</span>
-                        {step.label}
-                      </p>
-                      <h2>{step.title}</h2>
-                      <p>{step.body}</p>
-                    </article>
-                  ))}
+                  <div className="hero-rail__viewport">
+                    {heroSteps.map((step, index) => (
+                      <article
+                        key={step.label}
+                        className={`hero-step hero-step--${index}`}
+                      >
+                        <p className="hero-step__label">
+                          <span>{step.index}</span>
+                          {step.label}
+                        </p>
+                        <h2>{step.title}</h2>
+                        <p>{step.body}</p>
+                      </article>
+                    ))}
+                  </div>
                 </aside>
               </div>
             </div>
@@ -398,11 +590,11 @@ function App() {
 
           <div className="trust-panel__content">
             <h2 className="content-reveal">
-              Calm enough to use. Serious enough for the deadline.
+              Built for District teams who cannot afford last-week surprises.
             </h2>
             <p className="content-reveal">
-              Quoin gives DC teams one clearer view of what is ready, what is
-              missing, and what still needs attention.
+              Quoin is shaped around DC coverage, review, and Portfolio Manager
+              handoffs so the benchmark stays legible when pressure goes up.
             </p>
 
             <div className="trust-grid">
@@ -420,9 +612,11 @@ function App() {
       <section id="cta" className="cta-panel">
         <div className="cta-panel__inner">
           <p className="cta-panel__eyebrow">Request a walkthrough</p>
-          <h2>See what needs attention before May 1.</h2>
+          <h2>See what still needs attention before May 1.</h2>
           <p>
-            Quoin helps DC teams get the benchmark cleaner before filing week compresses every decision.
+            We will show how Quoin turns scattered building records into a
+            clearer benchmarking handoff before filing week compresses every
+            decision.
           </p>
 
           <div className="cta-panel__actions">
