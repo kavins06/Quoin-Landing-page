@@ -1,19 +1,24 @@
-# Adjust Desktop Hero Copy Positioning
+# Sync Homepage And Static Page SEO Metadata
 
-Implementation thesis: keep the desktop hero typography intact, then shift the copy column upward slightly so the full hero lede remains visible at 100% zoom without clipping at the bottom edge.
+Implementation thesis: align the homepage and canonical static page head tags with the current public-interest/DC benchmarking positioning so titles, descriptions, and social metadata match the live copy direction.
 
 ## Tasks
 
-- [DONE] Adjust desktop hero copy positioning in `src/App.css` so the lede is fully visible at 100% zoom.
-- [DONE] Run `npm run lint` and `npm run build`, then confirm the desktop hero still renders correctly.
+- [DONE] Update the homepage title, description, and social metadata to match the current positioning.
+- [DONE] Update the canonical static pages' titles, descriptions, and schema descriptions to match the same language system.
+- [DONE] Run `npm run lint` and `npm run build`, then confirm the metadata changes build cleanly.
 
 ## Files
 
 - `.specs/tasks.md`
-- `src/App.css`
+- `index.html`
+- `dc-energy-benchmarking/index.html`
+- `dc-benchmarking-deadlines-verification/index.html`
+- `dc-energy-benchmarking-guide/index.html`
 
 ## Acceptance Criteria
 
-- The homepage hero lede is fully visible at 100% zoom on desktop.
+- The homepage head tags match the current public-interest/DC benchmarking positioning.
+- The three canonical static pages use metadata and schema descriptions that match the current language system.
 - `npm run lint` passes.
 - `npm run build` passes.
