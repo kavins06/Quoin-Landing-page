@@ -2,33 +2,33 @@ export const heroSteps = [
   {
     index: '01',
     label: 'Coverage',
-    title: 'Confirm scope and missing accounts.',
-    body: 'See gaps before filing season.',
+    title: 'See coverage gaps before they become a scramble.',
+    body: 'Flag missing accounts and building mismatches earlier.',
   },
   {
     index: '02',
     label: 'Data QA',
-    title: 'Clean the record before review.',
-    body: 'Flag anomalies and document decisions early.',
+    title: 'Review the benchmark while there is still time to fix it.',
+    body: 'Catch anomalies, document decisions, and steady the record.',
   },
   {
     index: '03',
     label: 'Submission',
-    title: 'Enter May 1 ready.',
-    body: 'Keep the benchmark organized for handoff or submission.',
+    title: 'Walk into May 1 with a cleaner handoff.',
+    body: 'Keep review and submission calmer when the deadline closes in.',
   },
 ]
 
 export const heroContent = {
-  eyebrow: 'DC benchmarking for covered buildings',
-  headline: 'Get DC benchmarking ready before May 1.',
+  eyebrow: 'Washington, DC benchmarking workflow',
+  headline: 'Get the benchmark clean before May 1.',
   ledeDesktop:
-    'Quoin helps teams collect utility data, review records, and enter filing week with a cleaner benchmark.',
+    'Quoin gives DC teams a calmer path from utility data to a submission-ready benchmark.',
   ledeMobile:
-    'Quoin helps DC teams enter filing week with a cleaner benchmark.',
+    'Quoin gives DC teams a calmer path into filing week.',
   support:
-    'Built for Washington, DC portfolios reporting through Portfolio Manager.',
-  primaryCta: 'Request demo',
+    'Built for covered Washington, DC portfolios reporting through Portfolio Manager.',
+  primaryCta: 'Request a walkthrough',
 }
 
 export const heroNavLinks = [
@@ -51,30 +51,30 @@ export const sections = [
     id: 'workflow',
     index: '01',
     eyebrow: 'Workflow',
-    title: 'One calmer path from intake to submission.',
+    title: 'One clearer place to see what is ready, missing, and unresolved.',
     body:
-      'Quoin gives reporting teams one place to organize inputs, review anomalies, and prepare a cleaner annual benchmark.',
+      'Quoin keeps coverage, QA, and submission prep in one view so teams find the problem while there is still time to fix it.',
     points: [
-      'See covered buildings, missing accounts, and open gaps early.',
-      'Review unusual values before they become last-minute surprises.',
-      'Keep the record ready for handoff, review, or submission.',
+      'Surface covered buildings, missing accounts, and open gaps early.',
+      'Review unusual values before they become filing-week surprises.',
+      'Keep the benchmark legible for internal review, consultant review, or submission.',
     ],
-    noteLabel: 'Outcome',
-    note: 'Less rework near the deadline.',
+    noteLabel: 'Why it matters',
+    note: 'The record stays usable when the deadline pressure goes up.',
   },
 ]
 
 export const trustSignals = [
   {
     label: 'District-specific',
-    body: 'Designed for DC benchmarking work, not generic reporting software.',
+    body: 'Built around District coverage, deadlines, and Portfolio Manager workflows.',
   },
   {
-    label: 'Reviewable',
-    body: 'Keeps the record clear enough for handoff, review, and deadline questions.',
+    label: 'Review-ready',
+    body: 'Keeps the benchmark clear enough for internal review and outside scrutiny.',
   },
   {
-    label: 'Portfolio-ready',
-    body: 'Built for owners and managers tracking more than one building at a time.',
+    label: 'Portfolio-aware',
+    body: 'Supports owners, operators, and managers tracking more than one building at a time.',
   },
 ]

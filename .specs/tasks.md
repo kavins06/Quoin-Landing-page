@@ -1,21 +1,25 @@
-# Fix Workflow Rail Viewport Clipping
+# Sync Unpushed Local Site Content To Production
 
-Implementation thesis: keep the new directional handoff, but resize the rail viewport from the actual workflow content height so the body copy is never clipped at the bottom.
+Implementation thesis: production is behind because local content and static-page edits are still only in the working tree, so commit and push the site-facing diffs that affect the local preview.
 
 ## Tasks
 
-- [DONE] Adjust the workflow rail viewport sizing in `src/App.jsx` so the full step body remains visible.
-- [DONE] Preserve the slot-machine transition while removing bottom clipping.
-- [DONE] Verify the rail visibility fix with `npm run lint` and `npm run build`.
+- [TODO] Commit the unpushed homepage and static-page files that affect the local preview.
+- [TODO] Push the committed site-facing changes to `origin/main`.
+- [TODO] Verify that the live site reflects the newer local content and styling.
 
 ## Files
 
 - `.specs/tasks.md`
-- `src/App.jsx`
+- `src/content.js`
+- `public/seo.css`
+- `dc-energy-benchmarking/index.html`
+- `dc-benchmarking-deadlines-verification/index.html`
+- `dc-energy-benchmarking-guide/index.html`
 
 ## Acceptance Criteria
 
-- The workflow body copy is fully visible at rest.
-- The slot transition still reads cleanly without bottom clipping.
+- The local preview and live site are on the same site-facing content revision.
+- The newer CTA/copy/static-page header changes are visible in production.
 - `npm run lint` passes.
 - `npm run build` passes.
