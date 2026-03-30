@@ -188,6 +188,10 @@
   flex-wrap: wrap;
 }
 
+.hero-chrome__menu-toggle {
+  display: none;
+}
+
 .hero-chrome__brand,
 .hero-chrome__brand:visited {
   color: var(--color-text-strong);
@@ -236,7 +240,7 @@
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 35rem) minmax(14rem, 1fr) minmax(12rem, 14rem);
+  grid-template-columns: minmax(0, 35rem) minmax(12rem, 1fr) minmax(14rem, 16rem);
   justify-content: stretch;
   align-items: center;
   gap: clamp(1.8rem, 3vw, 3.2rem);
@@ -340,8 +344,8 @@
   position: relative;
   align-self: center;
   justify-self: end;
-  min-height: 10.8rem;
-  max-width: 14rem;
+  min-height: 12.4rem;
+  max-width: 16rem;
   width: 100%;
   padding: 0.75rem 0 0;
   border-top: 1px solid rgba(69, 76, 84, 0.08);
@@ -354,7 +358,7 @@
   display: inline-flex;
   margin-bottom: 0.58rem;
   color: var(--color-muted);
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -362,7 +366,7 @@
 
 .hero-rail__viewport {
   position: relative;
-  min-height: 8.9rem;
+  min-height: 10.2rem;
   overflow: hidden;
 }
 
@@ -377,24 +381,25 @@
   gap: 0.5rem;
   margin: 0 0 0.4rem;
   color: var(--color-muted);
+  font-size: 0.78rem;
 }
 
 .hero-step h2 {
-  max-width: 11.5ch;
-  margin-bottom: 0.35rem;
+  max-width: 12.5ch;
+  margin-bottom: 0.45rem;
   font-family: var(--font-body);
-  font-size: clamp(1rem, 0.94rem + 0.26vw, 1.16rem);
+  font-size: clamp(1.12rem, 1.02rem + 0.3vw, 1.32rem);
   font-weight: 600;
   letter-spacing: -0.03em;
-  line-height: 1.14;
+  line-height: 1.12;
 }
 
 .hero-step p:last-child {
-  max-width: 22ch;
+  max-width: 24ch;
   margin: 0;
   color: color-mix(in oklab, var(--color-muted) 90%, white);
-  font-size: 0.82rem;
-  line-height: 1.38;
+  font-size: 0.92rem;
+  line-height: 1.44;
 }
 
 .hero-focus-inline {
@@ -409,6 +414,11 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+
+.hero-focus-inline__list {
+  display: grid;
+  gap: 0.78rem;
 }
 
 .hero-focus-inline__item {
@@ -757,7 +767,7 @@
   .hero-overlay {
     height: auto;
     min-height: auto;
-    padding: 0.95rem 1rem 1.35rem;
+    padding: 0.95rem 0.95rem 1.5rem;
     background:
       linear-gradient(180deg, rgba(248, 246, 242, 0.93) 0%, rgba(248, 246, 242, 0.88) 24%, rgba(248, 246, 242, 0.83) 54%, rgba(248, 246, 242, 0.95) 100%);
   }
@@ -773,54 +783,94 @@
     grid-template-columns: auto auto;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 0.5rem;
-    margin-bottom: 0.25rem;
+    column-gap: 0.55rem;
+    row-gap: 0.68rem;
+    margin-bottom: 0.42rem;
+    position: relative;
+    z-index: 6;
   }
 
   .hero-chrome__group {
-    display: contents;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: end;
+    align-items: start;
+    gap: 0.62rem;
+    position: relative;
+    justify-self: end;
+    width: auto;
+  }
+
+  .hero-chrome__menu-toggle {
+    grid-column: 2;
+    grid-row: 1;
+    display: inline-grid;
+    justify-items: center;
+    align-content: center;
+    gap: 0.22rem;
+    width: 2.4rem;
+    min-height: 2.4rem;
+    padding: 0;
+    border: 1px solid rgba(93, 105, 114, 0.08);
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(250, 248, 244, 0.8));
+    box-shadow: 0 10px 20px -28px rgba(45, 69, 92, 0.16);
+    cursor: pointer;
+    z-index: 7;
+  }
+
+  .hero-chrome__menu-toggle span {
+    display: block;
+    width: 0.82rem;
+    height: 1.5px;
+    border-radius: 999px;
+    background: var(--color-accent);
   }
 
   .hero-chrome__nav {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    gap: 0.45rem;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-    padding-top: 0.08rem;
+    position: absolute;
+    top: calc(100% + 0.38rem);
+    right: 0;
+    display: none;
+    grid-column: auto;
+    grid-row: auto;
+    width: min(14rem, calc(100vw - 1.9rem));
+    padding: 0.45rem;
+    border: 1px solid rgba(93, 105, 114, 0.08);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(250, 248, 244, 0.98));
+    box-shadow: 0 16px 28px -30px rgba(45, 69, 92, 0.26);
+    z-index: 8;
   }
 
-  .hero-chrome__nav::-webkit-scrollbar {
-    display: none;
+  .hero-chrome__nav.is-open {
+    display: grid;
+    gap: 0.28rem;
   }
 
   .hero-chrome__nav a,
   .hero-chrome__nav a:visited {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    min-height: 2.18rem;
-    padding: 0.48rem 0.72rem;
-    border: 1px solid rgba(93, 105, 114, 0.08);
-    border-radius: 999px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.52), rgba(250, 248, 244, 0.76));
-    font-size: 0.61rem;
-    letter-spacing: 0.13em;
-    scroll-snap-align: start;
+    justify-content: flex-start;
+    min-height: 2rem;
+    padding: 0.48rem 0.66rem;
+    border-radius: 0.8rem;
+    background: rgba(255, 255, 255, 0.48);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    white-space: normal;
   }
 
   .hero-chrome__cta,
   .hero-chrome__cta:visited {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
     align-self: start;
-    min-height: 2.68rem;
-    padding: 0.72rem 0.92rem;
-    font-size: 0.62rem;
+    min-height: 2.4rem;
+    padding: 0.64rem 0.96rem;
+    font-size: 0.58rem;
+    justify-self: end;
   }
 
   .hero-layout {
@@ -828,38 +878,38 @@
     height: auto;
     min-height: auto;
     align-content: start;
-    gap: 0.72rem;
-    padding-top: 0.35rem;
+    gap: 0.92rem;
+    padding-top: 0.24rem;
     padding-bottom: 0;
   }
 
   .hero-copy {
-    gap: 0.68rem;
+    gap: 0.56rem;
     max-width: 100%;
     padding-top: 0;
   }
 
   .hero-copy__body {
-    gap: 0.42rem;
+    gap: 0.36rem;
   }
 
   .hero-copy__body h1 {
-    max-width: 6.2ch;
-    font-size: clamp(2.38rem, 10.4vw, 3.22rem);
-    line-height: 0.92;
+    max-width: 6.35ch;
+    font-size: clamp(2.14rem, 9.2vw, 2.92rem);
+    line-height: 0.94;
     letter-spacing: -0.048em;
   }
 
   .hero-copy__lede {
-    max-width: 20ch;
-    font-size: 0.93rem;
-    line-height: 1.32;
+    max-width: 21.5ch;
+    font-size: 0.9rem;
+    line-height: 1.36;
   }
 
   .hero-copy__eyebrow {
-    max-width: 18ch;
-    font-size: 0.64rem;
-    letter-spacing: 0.14em;
+    max-width: 19ch;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
     line-height: 1.36;
   }
 
@@ -875,7 +925,7 @@
     display: grid;
     order: 2;
     gap: 0;
-    margin-top: 0.08rem;
+    margin-top: 0.2rem;
   }
 
   .hero-copy__support {
@@ -893,34 +943,38 @@
     display: grid;
     order: 1;
     width: 100%;
-    margin-top: 0.1rem;
-    padding: 0.95rem 1rem 1rem;
+    margin-top: 0;
+    padding: 0.8rem 0.88rem 0.86rem;
     border: 1px solid rgba(93, 105, 114, 0.08);
-    border-radius: 1.35rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(252, 250, 246, 0.94));
-    box-shadow: 0 14px 24px -28px rgba(82, 90, 96, 0.18);
-    backdrop-filter: blur(8px);
+    border-radius: 1.18rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(252, 250, 246, 0.92));
+    box-shadow: 0 12px 22px -30px rgba(82, 90, 96, 0.14);
     z-index: 2;
   }
 
   .hero-focus-inline__caption {
-    margin-bottom: 0.62rem;
+    margin-bottom: 0.54rem;
+  }
+
+  .hero-focus-inline__list {
+    gap: 0.58rem;
   }
 
   .hero-focus-inline__item {
-    gap: 0.14rem;
-    padding-top: 0.7rem;
+    gap: 0.12rem;
+    padding-top: 0.58rem;
   }
 
   .hero-focus-inline__item h2 {
-    max-width: 13.2ch;
-    font-size: clamp(1.08rem, 4.7vw, 1.28rem);
+    max-width: 14ch;
+    font-size: clamp(1rem, 4.3vw, 1.2rem);
+    line-height: 1.1;
   }
 
   .hero-focus-inline__item p:last-child {
-    max-width: 29ch;
-    font-size: 0.9rem;
-    line-height: 1.44;
+    max-width: 31ch;
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 
   .section-block,
@@ -971,11 +1025,16 @@
   }
 
   .hero-chrome {
-    margin-bottom: 0.2rem;
+    row-gap: 0.56rem;
+    margin-bottom: 0.28rem;
+  }
+
+  .hero-chrome__group {
+    gap: 0.52rem;
   }
 
   .hero-layout {
-    gap: 0.56rem;
+    gap: 0.72rem;
     padding-top: 0.18rem;
   }
 
@@ -989,21 +1048,21 @@
 
   .hero-copy__eyebrow {
     max-width: 20ch;
-    font-size: 0.64rem;
-    letter-spacing: 0.14em;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
     line-height: 1.34;
   }
 
   .hero-copy__body h1 {
-    max-width: 5.6ch;
-    font-size: clamp(2.12rem, 10vw, 2.78rem);
-    line-height: 0.92;
+    max-width: 5.8ch;
+    font-size: clamp(2rem, 9.5vw, 2.62rem);
+    line-height: 0.94;
   }
 
   .hero-copy__lede {
-    max-width: 18ch;
-    font-size: 0.86rem;
-    line-height: 1.28;
+    max-width: 20ch;
+    font-size: 0.84rem;
+    line-height: 1.32;
   }
 
   .hero-mobile-composition {
@@ -1012,42 +1071,45 @@
 
   .hero-focus-inline {
     margin-top: 0;
-    padding: 0.78rem 0.86rem 0.84rem;
-    border-radius: 1.14rem;
-    box-shadow: 0 12px 20px -24px rgba(82, 90, 96, 0.16);
+    padding: 0.72rem 0.8rem 0.8rem;
+    border-radius: 1.04rem;
+    box-shadow: 0 10px 18px -24px rgba(82, 90, 96, 0.14);
   }
 
   .hero-focus-inline__caption {
     margin-bottom: 0.52rem;
   }
 
+  .hero-focus-inline__list {
+    gap: 0.52rem;
+  }
+
   .hero-focus-inline__item {
-    padding-top: 0.58rem;
+    padding-top: 0.5rem;
   }
 
   .hero-focus-inline__item h2 {
-    max-width: 12.4ch;
-    font-size: 1.02rem;
+    max-width: 13ch;
+    font-size: 0.98rem;
   }
 
   .hero-focus-inline__item p:last-child {
-    font-size: 0.86rem;
-    line-height: 1.38;
+    font-size: 0.82rem;
+    line-height: 1.34;
   }
 
   .hero-copy__support {
     font-size: 0.8rem;
   }
 
-  .hero-chrome__nav a,
-  .hero-chrome__nav a:visited {
-    min-height: 2.05rem;
-    padding: 0.42rem 0.64rem;
-  }
-
   .hero-chrome__cta,
   .hero-chrome__cta:visited {
-    min-height: 2.52rem;
-    padding: 0.66rem 0.82rem;
+    min-height: 2.26rem;
+    padding: 0.58rem 0.84rem;
+  }
+
+  .hero-chrome__menu-toggle {
+    width: 2.26rem;
+    min-height: 2.26rem;
   }
 }

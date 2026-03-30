@@ -25,7 +25,7 @@ export const heroContent = {
   ledeDesktop:
     'Quoin is a free public-interest platform built at Georgetown University to help DC buildings complete benchmarking correctly, connect Portfolio Manager, organize energy data, and eliminate last-minute rework.',
   ledeMobile:
-    'Quoin helps DC building owners finish benchmarking with less confusion and less last-minute rework.',
+    'Quoin is a free public-interest platform built at Georgetown University to help DC buildings benchmark correctly and avoid last-minute rework.',
   support: '',
   primaryCta: 'Start benchmarking',
 }
@@ -77,3 +77,11 @@ export const trustSignals = [
     body: 'Start without a software purchase or consulting contract just to begin the work.',
   },
 ]
+
+export const ctaContent = {
+  eyebrow: 'Start benchmarking',
+  title: 'Start the DC benchmarking workflow with a cleaner record.',
+  body:
+    'Quoin is a free public-interest platform built at Georgetown University to help DC buildings set up the record, connect Portfolio Manager, organize energy data, and reduce last-minute rework before May 1.',
+  primaryCta: 'Start benchmarking',
+}

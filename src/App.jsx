@@ -1,10 +1,11 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './App.css'
 import HeroScene from './components/HeroScene'
 import SectionBlock from './components/SectionBlock'
 import {
+  ctaContent,
   heroContent,
   heroNavLinks,
   heroSteps,
@@ -14,13 +15,12 @@ import {
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const primaryHeroStep = heroSteps[0]
 function App() {
   const pageRef = useRef(null)
   const heroTrackRef = useRef(null)
   const sceneControls = useRef(null)
   const prefersReducedMotion = usePrefersReducedMotion()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useLayoutEffect(() => {
     const scope = pageRef.current
@@ -498,14 +498,38 @@ function App() {
                   Quoin
                 </a>
                 <div className="hero-chrome__group">
-                  <nav className="hero-chrome__nav" aria-label="Hero guide navigation">
+                  <button
+                    type="button"
+                    className="hero-chrome__menu-toggle"
+                    aria-expanded={isMobileMenuOpen}
+                    aria-controls="hero-mobile-nav"
+                    aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                    onClick={() => setIsMobileMenuOpen((open) => !open)}
+                  >
+                    <span />
+                    <span />
+                    <span />
+                  </button>
+                  <nav
+                    id="hero-mobile-nav"
+                    className={`hero-chrome__nav ${isMobileMenuOpen ? 'is-open' : ''}`}
+                    aria-label="Hero guide navigation"
+                  >
                     {heroNavLinks.map((link) => (
-                      <a key={link.href} href={link.href}>
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
                         {link.label}
                       </a>
                     ))}
                   </nav>
-                  <a className="hero-chrome__cta" href="#cta">
+                  <a
+                    className="hero-chrome__cta"
+                    href="#cta"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
                     {heroContent.primaryCta}
                   </a>
                 </div>
@@ -534,14 +558,18 @@ function App() {
                       <span className="hero-focus-inline__caption">
                         Workflow
                       </span>
-                      <article className="hero-focus-inline__item">
-                        <p className="hero-step__label">
-                          <span>{primaryHeroStep.index}</span>
-                          {primaryHeroStep.label}
-                        </p>
-                        <h2>{primaryHeroStep.title}</h2>
-                        <p>{primaryHeroStep.body}</p>
-                      </article>
+                      <div className="hero-focus-inline__list">
+                        {heroSteps.map((step) => (
+                          <article key={step.index} className="hero-focus-inline__item">
+                            <p className="hero-step__label">
+                              <span>{step.index}</span>
+                              {step.label}
+                            </p>
+                            <h2>{step.title}</h2>
+                            <p>{step.body}</p>
+                          </article>
+                        ))}
+                      </div>
                     </section>
                   </div>
 
@@ -612,17 +640,13 @@ function App() {
 
       <section id="cta" className="cta-panel">
         <div className="cta-panel__inner">
-          <p className="cta-panel__eyebrow">Start benchmarking</p>
-          <h2>Create your building and start now.</h2>
-          <p>
-            Quoin is free to use. Set up the building, connect Portfolio
-            Manager, upload the required information, and see what still needs
-            attention before May 1.
-          </p>
+          <p className="cta-panel__eyebrow">{ctaContent.eyebrow}</p>
+          <h2>{ctaContent.title}</h2>
+          <p>{ctaContent.body}</p>
 
           <div className="cta-panel__actions">
             <a className="button button--primary" href="mailto:hello@quoin.com">
-              Start benchmarking
+              {ctaContent.primaryCta}
             </a>
           </div>
         </div>
