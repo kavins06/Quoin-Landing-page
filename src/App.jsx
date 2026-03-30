@@ -40,11 +40,11 @@ function App() {
       if (!prefersReducedMotion) {
         mm.add('(min-width: 1200px)', () => {
           const railTransitionConfig = {
-            enterDuration: 0.42,
+            enterDuration: 0.38,
             enterEase: 'power3.out',
-            exitDuration: 0.34,
+            exitDuration: 0.3,
             exitEase: 'power2.in',
-            offsetPercent: 18,
+            offsetPercent: 14,
           }
           let activeHeroStep = 0
           let railTransition = null
@@ -199,7 +199,7 @@ function App() {
               heroFrame,
               {
                 scale: 1,
-                xPercent: -8,
+                xPercent: -10,
                 yPercent: 0,
                 rotation: 0,
                 duration: 0.96,
@@ -209,7 +209,7 @@ function App() {
             .to(
               ambientVeil,
               {
-                opacity: 0.11,
+                opacity: 0.1,
                 duration: 0.96,
               },
               0,
@@ -217,8 +217,8 @@ function App() {
             .to(
               depthVeil,
               {
-                opacity: 0.08,
-                scale: 1.01,
+                opacity: 0.07,
+                scale: 1.006,
                 duration: 0.96,
               },
               0.08,
@@ -226,8 +226,8 @@ function App() {
             .to(
               heroFrame,
               {
-                scale: 1.02,
-                xPercent: -2,
+                scale: 1.015,
+                xPercent: -4,
                 yPercent: 0,
                 rotation: 0,
                 duration: 0.92,
@@ -237,7 +237,7 @@ function App() {
             .to(
               ambientVeil,
               {
-                opacity: 0.14,
+                opacity: 0.115,
                 duration: 0.9,
               },
               0.94,
@@ -245,8 +245,8 @@ function App() {
             .to(
               depthVeil,
               {
-                opacity: 0.11,
-                scale: 1.02,
+                opacity: 0.09,
+                scale: 1.012,
                 duration: 0.9,
               },
               0.94,
@@ -254,8 +254,8 @@ function App() {
             .to(
               heroFrame,
               {
-                scale: 1.035,
-                xPercent: 4,
+                scale: 1.024,
+                xPercent: 1,
                 yPercent: 0,
                 rotation: 0,
                 duration: 0.96,
@@ -265,7 +265,7 @@ function App() {
             .to(
               ambientVeil,
               {
-                opacity: 0.16,
+                opacity: 0.13,
                 duration: 0.92,
               },
               1.74,
@@ -273,8 +273,8 @@ function App() {
             .to(
               depthVeil,
               {
-                opacity: 0.14,
-                scale: 1.032,
+                opacity: 0.11,
+                scale: 1.02,
                 duration: 0.92,
               },
               1.74,
@@ -320,8 +320,8 @@ function App() {
             .to(
               heroFrame,
               {
-                scale: 1.01,
-                xPercent: 0,
+                scale: 1.006,
+                xPercent: 2,
                 yPercent: 0,
                 duration: 1.4,
               },
@@ -330,7 +330,7 @@ function App() {
             .to(
               ambientVeil,
               {
-                opacity: 0.14,
+                opacity: 0.12,
                 duration: 1.3,
               },
               0,
@@ -338,8 +338,8 @@ function App() {
             .to(
               depthVeil,
               {
-                opacity: 0.11,
-                scale: 1.015,
+                opacity: 0.09,
+                scale: 1.008,
                 duration: 1.3,
               },
               0.18,
@@ -615,8 +615,8 @@ function App() {
           <p className="cta-panel__eyebrow">Start benchmarking</p>
           <h2>Create your building and start now.</h2>
           <p>
-            Quoin is free to use. Start the workflow, connect Portfolio
-            Manager, upload the required data, and see what still needs
+            Quoin is free to use. Set up the building, connect Portfolio
+            Manager, upload the required information, and see what still needs
             attention before May 1.
           </p>
 

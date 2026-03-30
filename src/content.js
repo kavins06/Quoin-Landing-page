@@ -2,8 +2,8 @@ export const heroSteps = [
   {
     index: '01',
     label: 'Setup',
-    title: 'Create the building and see what is required.',
-    body: 'Start with the property details and the inputs needed for DC benchmarking.',
+    title: 'Set up the building and see what is required.',
+    body: 'Start with the building details and the inputs needed for DC benchmarking.',
   },
   {
     index: '02',
@@ -23,22 +23,21 @@ export const heroContent = {
   eyebrow: 'Free, guided DC benchmarking',
   headline: 'Benchmark your DC building correctly before May 1.',
   ledeDesktop:
-    'Quoin helps building owners create the property, connect Portfolio Manager, organize energy data, and complete benchmarking with less confusion and less last-minute rework.',
+    'Quoin is a free public-interest platform built at Georgetown University to help DC buildings complete benchmarking correctly, connect Portfolio Manager, organize energy data, and eliminate last-minute rework.',
   ledeMobile:
-    'Quoin helps DC building owners complete benchmarking with less confusion and less last-minute rework.',
-  support:
-    'Built specifically for covered Washington, DC buildings reporting through ENERGY STAR Portfolio Manager. Free to use.',
+    'Quoin helps DC building owners finish benchmarking with less confusion and less last-minute rework.',
+  support: '',
   primaryCta: 'Start benchmarking',
 }
 
 export const heroNavLinks = [
   {
     href: '/dc-energy-benchmarking/',
-    label: 'Benchmarking',
+    label: 'DC Benchmarking',
   },
   {
     href: '/dc-benchmarking-deadlines-verification/',
-    label: 'Deadlines',
+    label: 'Deadlines & Verification',
   },
   {
     href: '/dc-energy-benchmarking-guide/',
@@ -53,7 +52,7 @@ export const sections = [
     eyebrow: 'Workflow',
     title: 'A guided DC benchmarking workflow, not just another checklist.',
     body:
-      'Quoin takes building owners from setup to review in one place so they can create the building, connect Portfolio Manager, organize required data, and complete benchmarking before May 1.',
+      'Quoin brings setup, connection, and review into one place so building owners can set up the building, connect Portfolio Manager, organize required data, and finish benchmarking before May 1.',
     points: [
       'See the next required step, missing inputs, and open issues in one view.',
       'Find coverage gaps and unusual values before filing week.',
