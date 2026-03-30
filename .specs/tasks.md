@@ -1,21 +1,22 @@
-# Move Mobile Hamburger To Top Right
+# Revert Homepage Brand Lockup Badge
 
-Implementation thesis: place the hamburger in the true top-right corner on mobile and shift the benchmark CTA left of it so the header hierarchy is visually clear.
+Implementation thesis: remove the ESPM badge from the homepage brand lockup and restore the original Quoin-only namestamp while preserving the proof-section and sidebar badge placements.
 
 ## Tasks
 
-- [DONE] Move the mobile hamburger icon to the top-right corner of the header.
-- [DONE] Shift the benchmark CTA to sit to the left of the hamburger with cleaner spacing.
-- [DONE] Run `npm run lint` and `npm run build`, then confirm the mobile header layout builds cleanly.
+- [DONE] Remove the ESPM badge from the homepage header markup.
+- [DONE] Remove the temporary header badge styles and restore the original Quoin lockup.
+- [DONE] Run `npm run lint` and `npm run build`, then confirm the revert builds cleanly.
 
 ## Files
 
 - `.specs/tasks.md`
+- `src/App.jsx`
 - `src/App.css`
 
 ## Acceptance Criteria
 
-- The hamburger sits at the top-right of the mobile header.
-- The benchmark CTA sits to the left of the hamburger with cleaner spacing.
+- The homepage top-left lockup is back to Quoin only.
+- The previously added proof/CTA badges remain untouched.
 - `npm run lint` passes.
 - `npm run build` passes.

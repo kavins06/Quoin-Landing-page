@@ -626,6 +626,13 @@ function App() {
               input from DC property managers.
             </p>
 
+            <figure className="trust-badge content-reveal">
+              <img
+                src="/espm/Works_with_PM_logo_Blue.png"
+                alt="Works with ENERGY STAR Portfolio Manager"
+              />
+            </figure>
+
             <div className="trust-grid">
               {trustSignals.map((signal) => (
                 <article key={signal.label} className="trust-grid__item content-reveal">

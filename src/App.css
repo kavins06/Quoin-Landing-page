@@ -555,6 +555,21 @@
   padding-top: 0.5rem;
 }
 
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding-top: 0.25rem;
+}
+
+.trust-badge img {
+  display: block;
+  width: clamp(9.6rem, 12vw, 11.2rem);
+  max-width: 100%;
+  height: auto;
+}
+
 .trust-grid__item {
   padding-top: 0.9rem;
   border-top: 1px solid color-mix(in oklab, var(--color-line) 82%, white);
@@ -780,7 +795,7 @@
 
   .hero-chrome {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: flex-start;
     justify-content: space-between;
     column-gap: 0.55rem;
@@ -993,6 +1008,10 @@
   .section-block__split,
   .trust-grid {
     grid-template-columns: 1fr;
+  }
+
+  .trust-badge img {
+    width: 9.2rem;
   }
 
   .section-block__frame,

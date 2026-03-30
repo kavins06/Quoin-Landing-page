@@ -290,6 +290,21 @@ p {
   gap: 0.9rem;
 }
 
+.seo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding-top: 0.1rem;
+}
+
+.seo-badge img {
+  display: block;
+  width: clamp(9.2rem, 42vw, 10.6rem);
+  max-width: 100%;
+  height: auto;
+}
+
 .seo-side {
   align-content: start;
   gap: 1.15rem;
@@ -485,6 +500,10 @@ p {
   .seo-side {
     grid-template-columns: 1fr;
     gap: 0.9rem;
+  }
+
+  .seo-badge img {
+    width: 9rem;
   }
 
   .seo-summary th,
