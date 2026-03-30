@@ -1,25 +1,31 @@
-# Sync Unpushed Local Site Content To Production
+# Implement New Website Brief From Uploaded File
 
-Implementation thesis: production is behind because local content and static-page edits are still only in the working tree, so commit and push the site-facing diffs that affect the local preview.
+Implementation thesis: treat `C:\Users\kavin\Downloads\New Website.txt` as the binding redesign brief, keep the current page structure where the brief explicitly says to preserve it, and rewrite homepage plus static-page wording and CTA hierarchy to match the brief closely.
 
 ## Tasks
 
-- [TODO] Commit the unpushed homepage and static-page files that affect the local preview.
-- [TODO] Push the committed site-facing changes to `origin/main`.
-- [TODO] Verify that the live site reflects the newer local content and styling.
+- [DONE] Rewrite homepage content and CTA language in `src/content.js`, `src/App.jsx`, and `index.html` to match the uploaded brief.
+- [DONE] Update the three canonical static editorial pages so their visible copy aligns with the uploaded brief.
+- [DONE] Update the two bridge pages so their redirect copy matches the uploaded brief.
+- [DONE] Run `npm run lint` and `npm run build`, then fix any redesign-related issues.
 
 ## Files
 
 - `.specs/tasks.md`
+- `index.html`
 - `src/content.js`
-- `public/seo.css`
+- `src/App.jsx`
 - `dc-energy-benchmarking/index.html`
 - `dc-benchmarking-deadlines-verification/index.html`
 - `dc-energy-benchmarking-guide/index.html`
+- `dc-beps-compliance/index.html`
+- `dc-energy-benchmarking-beps-guide/index.html`
 
 ## Acceptance Criteria
 
-- The local preview and live site are on the same site-facing content revision.
-- The newer CTA/copy/static-page header changes are visible in production.
+- Homepage copy, CTA language, workflow steps, proof, and CTA section match the uploaded brief.
+- Static editorial pages use the wording, dates, and CTA language from the uploaded brief.
+- Bridge pages match the uploaded redirect wording from the uploaded brief.
+- The site remains responsive and production-ready.
 - `npm run lint` passes.
 - `npm run build` passes.

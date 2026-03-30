@@ -1,34 +1,34 @@
 export const heroSteps = [
   {
     index: '01',
-    label: 'Coverage',
-    title: 'See coverage gaps before they become a scramble.',
-    body: 'Flag missing accounts and building mismatches earlier.',
+    label: 'Setup',
+    title: 'Create the building and see what is required.',
+    body: 'Start with the property details and the inputs needed for DC benchmarking.',
   },
   {
     index: '02',
-    label: 'Data QA',
-    title: 'Review the benchmark while there is still time to fix it.',
-    body: 'Catch anomalies, document decisions, and steady the record.',
+    label: 'Connect',
+    title: 'Connect Portfolio Manager and bring the data together.',
+    body: 'Link your account, upload records, and surface missing coverage early.',
   },
   {
     index: '03',
-    label: 'Submission',
-    title: 'Walk into May 1 with a cleaner handoff.',
-    body: 'Keep review and submission calmer when the deadline closes in.',
+    label: 'Review',
+    title: 'Catch problems early and finish with a cleaner benchmark.',
+    body: 'Review gaps, unusual values, and open issues before reporting.',
   },
 ]
 
 export const heroContent = {
-  eyebrow: 'Washington, DC benchmarking workflow',
-  headline: 'Get the benchmark clean before May 1.',
+  eyebrow: 'Free, guided DC benchmarking',
+  headline: 'Benchmark your DC building correctly before May 1.',
   ledeDesktop:
-    'Quoin gives DC teams a calmer path from utility data to a submission-ready benchmark.',
+    'Quoin helps building owners create the property, connect Portfolio Manager, organize energy data, and complete benchmarking with less confusion and less last-minute rework.',
   ledeMobile:
-    'Quoin gives DC teams a calmer path into filing week.',
+    'Quoin helps DC building owners complete benchmarking with less confusion and less last-minute rework.',
   support:
-    'Built for covered Washington, DC portfolios reporting through Portfolio Manager.',
-  primaryCta: 'Request a walkthrough',
+    'Built specifically for covered Washington, DC buildings reporting through ENERGY STAR Portfolio Manager. Free to use.',
+  primaryCta: 'Start benchmarking',
 }
 
 export const heroNavLinks = [
@@ -51,30 +51,30 @@ export const sections = [
     id: 'workflow',
     index: '01',
     eyebrow: 'Workflow',
-    title: 'One clearer place to see what is ready, missing, and unresolved.',
+    title: 'A guided DC benchmarking workflow, not just another checklist.',
     body:
-      'Quoin keeps coverage, QA, and submission prep in one view so teams find the problem while there is still time to fix it.',
+      'Quoin takes building owners from setup to review in one place so they can create the building, connect Portfolio Manager, organize required data, and complete benchmarking before May 1.',
     points: [
-      'Surface covered buildings, missing accounts, and open gaps early.',
-      'Review unusual values before they become filing-week surprises.',
-      'Keep the benchmark legible for internal review, consultant review, or submission.',
+      'See the next required step, missing inputs, and open issues in one view.',
+      'Find coverage gaps and unusual values before filing week.',
+      'Make the benchmark easier to review internally or for later verification.',
     ],
     noteLabel: 'Why it matters',
-    note: 'The record stays usable when the deadline pressure goes up.',
+    note: 'The faster owners can see what is missing, the easier the benchmark is to complete correctly.',
   },
 ]
 
 export const trustSignals = [
   {
     label: 'District-specific',
-    body: 'Built around District coverage, deadlines, and Portfolio Manager workflows.',
+    body: "Built around the District's current benchmarking requirements, deadline, and reporting workflow.",
   },
   {
-    label: 'Review-ready',
-    body: 'Keeps the benchmark clear enough for internal review and outside scrutiny.',
+    label: 'Built around Portfolio Manager',
+    body: 'Designed for the ENERGY STAR Portfolio Manager process used for DC benchmarking.',
   },
   {
-    label: 'Portfolio-aware',
-    body: 'Supports owners, operators, and managers tracking more than one building at a time.',
+    label: 'Free to use',
+    body: 'Start without a software purchase or consulting contract just to begin the work.',
   },
 ]

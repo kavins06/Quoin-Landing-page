@@ -590,11 +590,12 @@ function App() {
 
           <div className="trust-panel__content">
             <h2 className="content-reveal">
-              Built for District teams who cannot afford last-week surprises.
+              Made to be trusted for a DC benchmarking workflow.
             </h2>
             <p className="content-reveal">
-              Quoin is shaped around DC coverage, review, and Portfolio Manager
-              handoffs so the benchmark stays legible when pressure goes up.
+              Quoin is a free public-interest platform built specifically for
+              DC benchmarking and informed by Georgetown real estate work with
+              input from DC property managers.
             </p>
 
             <div className="trust-grid">
@@ -611,17 +612,17 @@ function App() {
 
       <section id="cta" className="cta-panel">
         <div className="cta-panel__inner">
-          <p className="cta-panel__eyebrow">Request a walkthrough</p>
-          <h2>See what still needs attention before May 1.</h2>
+          <p className="cta-panel__eyebrow">Start benchmarking</p>
+          <h2>Create your building and start now.</h2>
           <p>
-            We will show how Quoin turns scattered building records into a
-            clearer benchmarking handoff before filing week compresses every
-            decision.
+            Quoin is free to use. Start the workflow, connect Portfolio
+            Manager, upload the required data, and see what still needs
+            attention before May 1.
           </p>
 
           <div className="cta-panel__actions">
             <a className="button button--primary" href="mailto:hello@quoin.com">
-              Request a walkthrough
+              Start benchmarking
             </a>
           </div>
         </div>
