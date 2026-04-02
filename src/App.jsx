@@ -9,7 +9,9 @@ import {
   heroContent,
   heroNavLinks,
   heroSteps,
+  officialResources,
   sections,
+  trustContent,
   trustSignals,
 } from './content'
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion'
@@ -493,6 +495,19 @@ function App() {
 
           <div className="hero-overlay">
             <div className="hero-overlay__inner">
+              <div className="hero-banner">
+                <span>Built at Georgetown University for DC benchmarking.</span>
+                <span>
+                  Need official District guidance or helpdesk support?{' '}
+                  <a
+                    href="https://dc.beam-portal.org/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Visit DOEE’s BEAM portal.
+                  </a>
+                </span>
+              </div>
               <header className="hero-chrome">
                 <a className="hero-chrome__brand" href="#top">
                   Quoin
@@ -553,10 +568,10 @@ function App() {
                   <div className="hero-mobile-composition">
                     <section
                       className="hero-focus-inline"
-                      aria-label="Workflow"
+                      aria-label="How it works"
                     >
                       <span className="hero-focus-inline__caption">
-                        Workflow
+                        How it works
                       </span>
                       <div className="hero-focus-inline__list">
                         {heroSteps.map((step) => (
@@ -573,6 +588,15 @@ function App() {
                     </section>
                   </div>
 
+                  <div className="hero-copy__actions">
+                    <a className="button button--primary" href="#cta">
+                      {heroContent.primaryCta}
+                    </a>
+                    <a className="hero-copy__link" href="#workflow">
+                      {heroContent.secondaryCta}
+                    </a>
+                  </div>
+
                   <p className="hero-copy__support">{heroContent.support}</p>
                 </div>
 
@@ -580,7 +604,7 @@ function App() {
                   className="hero-rail"
                   aria-label="Scroll narrative"
                 >
-                  <span className="hero-rail__caption">Workflow</span>
+                  <span className="hero-rail__caption">How it works</span>
                   <div className="hero-rail__viewport">
                     {heroSteps.map((step, index) => (
                       <article
@@ -610,20 +634,18 @@ function App() {
       <section id="trust" className="trust-panel section-panel">
         <div className="trust-panel__frame">
           <div className="trust-panel__meta content-reveal">
-            <span className="section-block__index">03</span>
+            <span className="section-block__index">02</span>
             <span className="section-block__eyebrow">
-              Proof
+              {trustContent.eyebrow}
             </span>
           </div>
 
           <div className="trust-panel__content">
             <h2 className="content-reveal">
-              Made to be trusted for a DC benchmarking workflow.
+              {trustContent.title}
             </h2>
             <p className="content-reveal">
-              Quoin is a free public-interest platform built specifically for
-              DC benchmarking and informed by Georgetown real estate work with
-              input from DC property managers.
+              {trustContent.body}
             </p>
 
             <figure className="trust-badge content-reveal">
@@ -641,6 +663,20 @@ function App() {
                 </article>
               ))}
             </div>
+
+            <section className="official-resources content-reveal" aria-labelledby="official-guidance-title">
+              <span className="official-resources__eyebrow">Official resources</span>
+              <h3 id="official-guidance-title">{officialResources.title}</h3>
+              <p>{officialResources.body}</p>
+              <a
+                className="official-resources__link"
+                href={officialResources.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {officialResources.cta}
+              </a>
+            </section>
           </div>
         </div>
       </section>
@@ -656,8 +692,13 @@ function App() {
               {ctaContent.primaryCta}
             </a>
           </div>
+          <p className="cta-panel__support">{ctaContent.support}</p>
         </div>
       </section>
+
+      <footer className="home-footer">
+        <p>Quoin is a public-interest tool built at Georgetown University for DC benchmarking.</p>
+      </footer>
     </main>
   )
 }

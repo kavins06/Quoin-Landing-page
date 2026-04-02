@@ -1,33 +1,34 @@
 export const heroSteps = [
   {
     index: '01',
-    label: 'Setup',
-    title: 'Set up the building and see what is required.',
-    body: 'Start with the building details and the inputs needed for DC benchmarking.',
+    label: 'Set up',
+    title: 'Set up the building',
+    body: 'Add the core building details and see exactly what information you’ll need for benchmarking.',
   },
   {
     index: '02',
-    label: 'Connect',
-    title: 'Connect Portfolio Manager and bring the data together.',
-    body: 'Link your account, upload records, and surface missing coverage early.',
+    label: 'Upload',
+    title: 'Upload utility documents',
+    body: 'Bring in energy and water bills so Quoin can organize the data in one place.',
   },
   {
     index: '03',
     label: 'Review',
-    title: 'Catch problems early and finish with a cleaner benchmark.',
-    body: 'Review gaps, unusual values, and open issues before reporting.',
+    title: 'Review what’s missing',
+    body: 'Catch missing coverage, unusual values, and open questions before deadline week.',
   },
 ]
 
 export const heroContent = {
-  eyebrow: 'Free, guided DC benchmarking',
-  headline: 'Benchmark your DC building correctly before May 1.',
+  eyebrow: 'Free DC benchmarking readiness',
+  headline: 'Get ready for DC benchmarking without the chaos',
   ledeDesktop:
-    'Quoin is a free public-interest platform built at Georgetown University to help DC buildings complete benchmarking correctly, connect Portfolio Manager, organize energy data, and eliminate last-minute rework.',
+    'Quoin helps DC building owners organize utility data, spot what’s missing, and prepare for ENERGY STAR Portfolio Manager before May 1.',
   ledeMobile:
-    'Quoin is a free public-interest platform built at Georgetown University to help DC buildings benchmark correctly and avoid last-minute rework.',
-  support: '',
-  primaryCta: 'Start benchmarking',
+    'Quoin helps DC building owners organize utility data, spot what’s missing, and prepare for ENERGY STAR Portfolio Manager before May 1.',
+  support: 'Free to use. Built for DC’s benchmarking workflow.',
+  primaryCta: 'Get started free',
+  secondaryCta: 'See how it works',
 }
 
 export const heroNavLinks = [
@@ -49,39 +50,54 @@ export const sections = [
   {
     id: 'workflow',
     index: '01',
-    eyebrow: 'Workflow',
-    title: 'A guided DC benchmarking workflow, not just another checklist.',
+    eyebrow: 'How it works',
+    title: 'A simpler way to get benchmark-ready',
     body:
-      'Quoin brings setup, connection, and review into one place so building owners can set up the building, connect Portfolio Manager, organize required data, and finish benchmarking before May 1.',
+      'Quoin helps you move through the parts of benchmarking that usually create delays: setting up the building, organizing utility data, and reviewing issues before filing.',
     points: [
-      'See the next required step, missing inputs, and open issues in one view.',
-      'Find coverage gaps and unusual values before filing week.',
-      'Make the benchmark easier to review internally or for later verification.',
+      'See what information your building still needs.',
+      'Organize utility data before it becomes a deadline problem.',
+      'Review missing coverage and unusual values earlier.',
     ],
-    noteLabel: 'Why it matters',
-    note: 'The faster owners can see what is missing, the easier the benchmark is to complete correctly.',
+    noteLabel: 'Why people use Quoin',
+    note: 'Most last-minute benchmarking problems come from missing utility data, incomplete coverage, or issues found too close to the deadline. Quoin helps surface those issues earlier so they are easier to fix.',
   },
 ]
+
+export const trustContent = {
+  eyebrow: 'Why people trust it',
+  title: 'Built specifically for DC benchmarking',
+  body:
+    'Quoin is a free public-interest tool designed for the District’s benchmarking process. It works alongside ENERGY STAR Portfolio Manager and official DC guidance.',
+}
 
 export const trustSignals = [
   {
-    label: 'District-specific',
-    body: "Built around the District's current benchmarking requirements, deadline, and reporting workflow.",
+    label: 'DC-specific',
+    body: 'Designed around the District’s benchmarking requirements and May 1 filing cycle.',
   },
   {
-    label: 'Built around Portfolio Manager',
-    body: 'Designed for the ENERGY STAR Portfolio Manager process used for DC benchmarking.',
+    label: 'Portfolio Manager ready',
+    body: 'Built to help you prepare the information needed for ENERGY STAR Portfolio Manager.',
   },
   {
     label: 'Free to use',
-    body: 'Start without a software purchase or consulting contract just to begin the work.',
+    body: 'Get organized without buying software or hiring outside help just to begin.',
   },
 ]
 
-export const ctaContent = {
-  eyebrow: 'Start benchmarking',
-  title: 'Start the DC benchmarking workflow with a cleaner record.',
+export const officialResources = {
+  title: 'Need official guidance?',
   body:
-    'Quoin is a free public-interest platform built at Georgetown University to help DC buildings set up the record, connect Portfolio Manager, organize energy data, and reduce last-minute rework before May 1.',
-  primaryCta: 'Start benchmarking',
+    'For District rules, compliance details, and official support resources, visit DOEE’s BEAM portal.',
+  cta: 'Open official DOEE guidance',
+  href: 'https://dc.beam-portal.org/',
+}
+
+export const ctaContent = {
+  eyebrow: 'Start',
+  title: 'Start with the information your building needs',
+  body: 'Set up the building, organize utility data, and review issues before filing.',
+  primaryCta: 'Get started free',
+  support: 'Free to use. No software purchase required.',
 }
