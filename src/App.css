@@ -177,19 +177,16 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1169 / 574;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-spm-mark img {
-  position: absolute;
-  top: 0;
-  left: 0;
   display: block;
   width: 100%;
   max-width: none;
   height: auto;
   filter: saturate(1.02) contrast(1.04) brightness(1);
-  transform: translate(-1.1%, -25.75%);
+  transform: translateY(0);
 }
 
 .hero-copy__lede {
@@ -592,11 +589,12 @@
 
   .hero-spm-mark {
     display: block;
+    margin-top: clamp(1.5rem, 4.8vh, 2.75rem);
   }
 
   .hero-rail {
     width: min(100%, 17rem);
-    margin-top: clamp(4.7rem, 9.2vh, 6rem);
+    margin-top: clamp(2.1rem, 5vh, 3.1rem);
   }
 }
 
@@ -607,7 +605,7 @@
   }
 
   .hero-rail {
-    margin-top: clamp(4.9rem, 9.4vh, 6.2rem);
+    margin-top: clamp(2.3rem, 5.2vh, 3.3rem);
   }
 
   .hero-overlay__inner {
