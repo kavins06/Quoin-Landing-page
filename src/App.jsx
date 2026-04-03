@@ -18,6 +18,7 @@ import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion'
 gsap.registerPlugin(ScrollTrigger)
 
 function App() {
+  const platformSignInUrl = 'https://platform-quoin-green.vercel.app/sign-in'
   const pageRef = useRef(null)
   const heroTrackRef = useRef(null)
   const prefersReducedMotion = usePrefersReducedMotion()
@@ -294,7 +295,7 @@ function App() {
                   </nav>
                   <a
                     className="hero-chrome__cta"
-                    href="#cta"
+                    href={platformSignInUrl}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {heroContent.primaryCta}
@@ -341,7 +342,7 @@ function App() {
                   </div>
 
                   <div className="hero-copy__actions">
-                    <a className="button button--primary" href="#cta">
+                    <a className="button button--primary" href={platformSignInUrl}>
                       {heroContent.primaryCta}
                     </a>
                   </div>
@@ -446,7 +447,7 @@ function App() {
           <p>{ctaContent.body}</p>
 
           <div className="cta-panel__actions">
-            <a className="button button--primary" href="mailto:hello@quoin.com">
+            <a className="button button--primary" href={platformSignInUrl}>
               {ctaContent.primaryCta}
             </a>
           </div>
