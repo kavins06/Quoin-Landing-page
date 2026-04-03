@@ -1,21 +1,21 @@
 export const heroSteps = [
   {
     index: '01',
-    label: 'Set up',
-    title: 'Set up the building',
-    body: 'Add the core building details and see exactly what information you’ll need for benchmarking.',
+    label: 'Connect',
+    title: 'Connect Quoin and DOEE from your ESPM account',
+    body: 'Start by connecting your ENERGY STAR Portfolio Manager account so Quoin can link the right benchmarking workflow.',
   },
   {
     index: '02',
     label: 'Upload',
-    title: 'Upload utility documents',
-    body: 'Bring in energy and water bills so Quoin can organize the data in one place.',
+    title: 'Upload all your bills',
+    body: 'Yes, just upload them. Quoin normalizes and arranges everything for you automatically.',
   },
   {
     index: '03',
-    label: 'Review',
-    title: 'Review what’s missing',
-    body: 'Catch missing coverage, unusual values, and open questions before deadline week.',
+    label: 'Push',
+    title: 'Push everything to ESPM in one click',
+    body: 'Once your data is organized, send it to ENERGY STAR Portfolio Manager without the manual cleanup.',
   },
 ]
 
@@ -23,10 +23,10 @@ export const heroContent = {
   eyebrow: 'Free DC benchmarking readiness',
   headline: 'Get ready for DC benchmarking without the chaos',
   ledeDesktop:
-    'Quoin helps DC building owners organize utility data, spot what’s missing, and prepare for ENERGY STAR Portfolio Manager before May 1.',
+    "Quoin helps DC building owners organize utility data, spot what's missing, and prepare for ENERGY STAR Portfolio Manager before May 1.",
   ledeMobile:
-    'Quoin helps DC building owners organize utility data, spot what’s missing, and prepare for ENERGY STAR Portfolio Manager before May 1.',
-  support: 'Free to use. Built for DC’s benchmarking workflow.',
+    "Quoin helps DC building owners organize utility data, spot what's missing, and prepare for ENERGY STAR Portfolio Manager before May 1.",
+  support: "Free to use. Built for DC's benchmarking workflow.",
   primaryCta: 'Get started free',
   secondaryCta: 'See how it works',
 }
@@ -34,15 +34,15 @@ export const heroContent = {
 export const heroNavLinks = [
   {
     href: '/dc-energy-benchmarking/',
-    label: 'DC Benchmarking',
+    label: 'Benchmarking',
   },
   {
     href: '/dc-benchmarking-deadlines-verification/',
-    label: 'Deadlines & Verification',
+    label: 'Deadline',
   },
   {
     href: '/dc-energy-benchmarking-guide/',
-    label: '2026 Guide',
+    label: 'Guide',
   },
 ]
 
@@ -68,13 +68,13 @@ export const trustContent = {
   eyebrow: 'Why people trust it',
   title: 'Built specifically for DC benchmarking',
   body:
-    'Quoin is a free public-interest tool designed for the District’s benchmarking process. It works alongside ENERGY STAR Portfolio Manager and official DC guidance.',
+    "Quoin is a free public-interest tool designed for the District's benchmarking process. It works alongside ENERGY STAR Portfolio Manager and official DC guidance.",
 }
 
 export const trustSignals = [
   {
     label: 'DC-specific',
-    body: 'Designed around the District’s benchmarking requirements and May 1 filing cycle.',
+    body: "Designed around the District's benchmarking requirements and May 1 filing cycle.",
   },
   {
     label: 'Portfolio Manager ready',
@@ -89,7 +89,7 @@ export const trustSignals = [
 export const officialResources = {
   title: 'Need official guidance?',
   body:
-    'For District rules, compliance details, and official support resources, visit DOEE’s BEAM portal.',
+    "For District rules, compliance details, and official support resources, visit DOEE's BEAM portal.",
   cta: 'Open official DOEE guidance',
   href: 'https://dc.beam-portal.org/',
 }

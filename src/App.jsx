@@ -2,7 +2,6 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './App.css'
-import HeroScene from './components/HeroScene'
 import SectionBlock from './components/SectionBlock'
 import {
   ctaContent,
@@ -17,10 +16,10 @@ import {
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
+
 function App() {
   const pageRef = useRef(null)
   const heroTrackRef = useRef(null)
-  const sceneControls = useRef(null)
   const prefersReducedMotion = usePrefersReducedMotion()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -32,15 +31,62 @@ function App() {
 
     const mm = gsap.matchMedia()
     const context = gsap.context(() => {
-      const heroFrame = scope.querySelector('.hero-media__frame--hero')
-      const ambientVeil = scope.querySelector('.hero-media__veil--ambient')
-      const depthVeil = scope.querySelector('.hero-media__veil--depth')
       const heroRail = scope.querySelector('.hero-rail')
       const heroRailViewport = scope.querySelector('.hero-rail__viewport')
-      const heroStepsNodes = scope.querySelectorAll('.hero-step')
+      const heroStepsNodes = Array.from(scope.querySelectorAll('.hero-step'))
 
-      if (!prefersReducedMotion) {
-        mm.add('(min-width: 1200px)', () => {
+      const syncHeroRailViewport = () => {
+        if (!heroRailViewport || heroStepsNodes.length === 0) {
+          return
+        }
+
+        const maxHeight = heroStepsNodes.reduce(
+          (height, stepNode) => Math.max(height, stepNode.scrollHeight, stepNode.offsetHeight),
+          0,
+        )
+
+        if (maxHeight > 0) {
+          gsap.set(heroRailViewport, { height: maxHeight + 10 })
+        }
+      }
+
+      const getHeroStepIndex = (progress) => {
+        if (progress >= 0.48) {
+          return 2
+        }
+
+        if (progress >= 0.24) {
+          return 1
+        }
+
+        return 0
+      }
+
+      mm.add('(min-width: 1200px)', () => {
+        if (!heroRail || heroStepsNodes.length === 0) {
+          return undefined
+        }
+
+        let activeHeroStep = 0
+        let railTransition = null
+
+        const setActiveHeroStep = (stepIndex) => {
+          if (stepIndex === activeHeroStep) {
+            return
+          }
+
+          if (prefersReducedMotion) {
+            activeHeroStep = stepIndex
+            heroStepsNodes.forEach((stepNode, index) => {
+              gsap.to(stepNode, {
+                autoAlpha: index === stepIndex ? 1 : 0,
+                duration: 0.2,
+                overwrite: 'auto',
+              })
+            })
+            return
+          }
+
           const railTransitionConfig = {
             enterDuration: 0.38,
             enterEase: 'power3.out',
@@ -48,411 +94,132 @@ function App() {
             exitEase: 'power2.in',
             offsetPercent: 14,
           }
-          let activeHeroStep = 0
-          let railTransition = null
 
-          const syncHeroRailViewport = () => {
-            if (!heroRailViewport) {
-              return
+          const previousStepIndex = activeHeroStep
+          const previousStepNode = heroStepsNodes[previousStepIndex]
+          const nextStepNode = heroStepsNodes[stepIndex]
+          activeHeroStep = stepIndex
+
+          railTransition?.kill()
+
+          heroStepsNodes.forEach((stepNode, index) => {
+            if (index !== previousStepIndex && index !== stepIndex) {
+              gsap.set(stepNode, {
+                yPercent: railTransitionConfig.offsetPercent,
+                autoAlpha: 0,
+                zIndex: 0,
+              })
             }
+          })
 
-            let maxHeight = 0
-            heroStepsNodes.forEach((stepNode) => {
-              maxHeight = Math.max(
-                maxHeight,
-                stepNode.scrollHeight,
-                stepNode.offsetHeight,
-              )
-            })
-
-            if (maxHeight > 0) {
-              gsap.set(heroRailViewport, { height: maxHeight + 10 })
-            }
-          }
-
-          const setActiveHeroStep = (stepIndex) => {
-            if (stepIndex === activeHeroStep) {
-              return
-            }
-
-            const previousStepIndex = activeHeroStep
-            const previousStepNode = heroStepsNodes[previousStepIndex]
-            const nextStepNode = heroStepsNodes[stepIndex]
-            activeHeroStep = stepIndex
-
-            if (railTransition) {
-              railTransition.kill()
-            }
-
-            heroStepsNodes.forEach((stepNode, index) => {
-              if (index !== previousStepIndex && index !== stepIndex) {
-                gsap.set(stepNode, {
-                  yPercent: railTransitionConfig.offsetPercent,
-                  autoAlpha: 0,
-                  zIndex: 0,
-                })
-              }
-            })
-
-            gsap.set(previousStepNode, {
-              yPercent: 0,
-              autoAlpha: 1,
-              zIndex: 1,
-            })
-            gsap.set(nextStepNode, {
-              yPercent: railTransitionConfig.offsetPercent,
-              autoAlpha: 0,
-              zIndex: 2,
-            })
-
-            railTransition = gsap.timeline({
-              defaults: { overwrite: 'auto' },
-              onComplete: () => {
-                gsap.set(previousStepNode, {
-                  yPercent: railTransitionConfig.offsetPercent,
-                  autoAlpha: 0,
-                  zIndex: 0,
-                })
-                gsap.set(nextStepNode, {
-                  yPercent: 0,
-                  autoAlpha: 1,
-                  zIndex: 1,
-                })
-                railTransition = null
-              },
-            })
-
-            railTransition
-              .to(
-                previousStepNode,
-                {
-                  yPercent: -railTransitionConfig.offsetPercent,
-                  autoAlpha: 0,
-                  duration: railTransitionConfig.exitDuration,
-                  ease: railTransitionConfig.exitEase,
-                },
-                0,
-              )
-              .to(
-                nextStepNode,
-                {
-                  yPercent: 0,
-                  autoAlpha: 1,
-                  duration: railTransitionConfig.enterDuration,
-                  ease: railTransitionConfig.enterEase,
-                },
-                0,
-              )
-          }
-
-          gsap.set(heroStepsNodes, {
+          gsap.set(previousStepNode, {
+            yPercent: 0,
+            autoAlpha: 1,
+            zIndex: 1,
+          })
+          gsap.set(nextStepNode, {
             yPercent: railTransitionConfig.offsetPercent,
             autoAlpha: 0,
-            zIndex: 0,
-          })
-          gsap.set(heroStepsNodes[0], { yPercent: 0, autoAlpha: 1, zIndex: 1 })
-          gsap.set(heroFrame, {
-            autoAlpha: 1,
-            scale: 0.98,
-            xPercent: -22,
-            yPercent: 0,
-            rotation: 0,
-          })
-          gsap.set(heroRail, {
-            autoAlpha: 1,
-            xPercent: 0,
-            yPercent: 0,
-            x: 0,
-            y: 0,
-          })
-          gsap.set(ambientVeil, { opacity: 0.08 })
-          gsap.set(depthVeil, { opacity: 0.05, scale: 0.98 })
-          syncHeroRailViewport()
-          ScrollTrigger.addEventListener('refreshInit', syncHeroRailViewport)
-
-          const heroTimeline = gsap.timeline({
-            defaults: { ease: 'none' },
-            scrollTrigger: {
-              trigger: heroTrackRef.current,
-              start: 'top top',
-              end: 'bottom bottom',
-              scrub: 0.9,
-              pin: '.hero-stage',
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-              onUpdate: ({ progress }) => {
-                if (progress >= 0.48) {
-                  setActiveHeroStep(2)
-                  return
-                }
-
-                if (progress >= 0.24) {
-                  setActiveHeroStep(1)
-                  return
-                }
-
-                setActiveHeroStep(0)
-              },
-            },
+            zIndex: 2,
           })
 
-          heroTimeline
-            .to(
-              heroFrame,
-              {
-                scale: 1,
-                xPercent: -10,
-                yPercent: 0,
-                rotation: 0,
-                duration: 0.96,
-              },
-              0,
-            )
-            .to(
-              ambientVeil,
-              {
-                opacity: 0.1,
-                duration: 0.96,
-              },
-              0,
-            )
-            .to(
-              depthVeil,
-              {
-                opacity: 0.07,
-                scale: 1.006,
-                duration: 0.96,
-              },
-              0.08,
-            )
-            .to(
-              heroFrame,
-              {
-                scale: 1.015,
-                xPercent: -4,
-                yPercent: 0,
-                rotation: 0,
-                duration: 0.92,
-              },
-              0.94,
-            )
-            .to(
-              ambientVeil,
-              {
-                opacity: 0.115,
-                duration: 0.9,
-              },
-              0.94,
-            )
-            .to(
-              depthVeil,
-              {
-                opacity: 0.09,
-                scale: 1.012,
-                duration: 0.9,
-              },
-              0.94,
-            )
-            .to(
-              heroFrame,
-              {
-                scale: 1.024,
-                xPercent: 1,
-                yPercent: 0,
-                rotation: 0,
-                duration: 0.96,
-              },
-              1.74,
-            )
-            .to(
-              ambientVeil,
-              {
-                opacity: 0.13,
-                duration: 0.92,
-              },
-              1.74,
-            )
-            .to(
-              depthVeil,
-              {
-                opacity: 0.11,
-                scale: 1.02,
-                duration: 0.92,
-              },
-              1.74,
-            )
-
-          return () => {
-            ScrollTrigger.removeEventListener('refreshInit', syncHeroRailViewport)
-            railTransition?.kill()
-          }
-        })
-
-        mm.add('(min-width: 721px) and (max-width: 1199px)', () => {
-          gsap.set(heroStepsNodes, { clearProps: 'all' })
-          gsap.set(heroFrame, {
-            autoAlpha: 1,
-            scale: 0.98,
-            xPercent: 6,
-            yPercent: 0,
-            rotation: 0,
-          })
-          gsap.set(heroRail, {
-            autoAlpha: 1,
-            xPercent: 0,
-            yPercent: 0,
-            x: 0,
-            y: 0,
-          })
-          gsap.set(ambientVeil, { opacity: 0.1 })
-          gsap.set(depthVeil, { opacity: 0.07, scale: 0.99 })
-
-          gsap.timeline({
-            defaults: { ease: 'none' },
-            scrollTrigger: {
-              trigger: heroTrackRef.current,
-              start: 'top top',
-              end: 'bottom bottom',
-              scrub: 0.75,
-              pin: '.hero-stage',
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            },
-          })
-            .to(
-              heroFrame,
-              {
-                scale: 1.006,
-                xPercent: 2,
-                yPercent: 0,
-                duration: 1.4,
-              },
-              0,
-            )
-            .to(
-              ambientVeil,
-              {
-                opacity: 0.12,
-                duration: 1.3,
-              },
-              0,
-            )
-            .to(
-              depthVeil,
-              {
-                opacity: 0.09,
-                scale: 1.008,
-                duration: 1.3,
-              },
-              0.18,
-            )
-        })
-
-        mm.add('(max-width: 720px)', () => {
-          gsap.set(heroStepsNodes, { clearProps: 'all' })
-          gsap.set(heroRailViewport, { clearProps: 'all' })
-          gsap.set(heroFrame, { clearProps: 'all' })
-          gsap.set(heroRail, { clearProps: 'all' })
-          gsap.set(ambientVeil, { clearProps: 'all' })
-          gsap.set(depthVeil, { clearProps: 'all' })
-        })
-      } else {
-        mm.add('(min-width: 1200px)', () => {
-          const fadeDuration = 0.2
-          let activeHeroStep = 0
-
-          const syncHeroRailViewport = () => {
-            if (!heroRailViewport) {
-              return
-            }
-
-            let maxHeight = 0
-            heroStepsNodes.forEach((stepNode) => {
-              maxHeight = Math.max(
-                maxHeight,
-                stepNode.scrollHeight,
-                stepNode.offsetHeight,
-              )
-            })
-
-            if (maxHeight > 0) {
-              gsap.set(heroRailViewport, { height: maxHeight + 10 })
-            }
-          }
-
-          const setActiveHeroStep = (stepIndex) => {
-            if (stepIndex === activeHeroStep) {
-              return
-            }
-
-            activeHeroStep = stepIndex
-            heroStepsNodes.forEach((stepNode, index) => {
-              gsap.to(stepNode, {
-                autoAlpha: index === stepIndex ? 1 : 0,
-                duration: fadeDuration,
-                overwrite: 'auto',
+          railTransition = gsap.timeline({
+            defaults: { overwrite: 'auto' },
+            onComplete: () => {
+              gsap.set(previousStepNode, {
+                yPercent: railTransitionConfig.offsetPercent,
+                autoAlpha: 0,
+                zIndex: 0,
               })
-            })
-          }
+              gsap.set(nextStepNode, {
+                yPercent: 0,
+                autoAlpha: 1,
+                zIndex: 1,
+              })
+              railTransition = null
+            },
+          })
 
+          railTransition
+            .to(
+              previousStepNode,
+              {
+                yPercent: -railTransitionConfig.offsetPercent,
+                autoAlpha: 0,
+                duration: railTransitionConfig.exitDuration,
+                ease: railTransitionConfig.exitEase,
+              },
+              0,
+            )
+            .to(
+              nextStepNode,
+              {
+                yPercent: 0,
+                autoAlpha: 1,
+                duration: railTransitionConfig.enterDuration,
+                ease: railTransitionConfig.enterEase,
+              },
+              0,
+            )
+        }
+
+        if (prefersReducedMotion) {
           gsap.set(heroStepsNodes, {
             yPercent: 0,
             autoAlpha: 0,
             zIndex: 0,
           })
           gsap.set(heroStepsNodes[0], { autoAlpha: 1, zIndex: 1 })
-          gsap.set(heroFrame, { clearProps: 'all' })
-          gsap.set(heroRail, { clearProps: 'all' })
-          gsap.set(ambientVeil, { clearProps: 'all' })
-          gsap.set(depthVeil, { clearProps: 'all' })
-          syncHeroRailViewport()
-          ScrollTrigger.addEventListener('refreshInit', syncHeroRailViewport)
-
-          const trigger = ScrollTrigger.create({
-            trigger: heroTrackRef.current,
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 0.1,
-            pin: '.hero-stage',
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            onUpdate: ({ progress }) => {
-              if (progress >= 0.48) {
-                setActiveHeroStep(2)
-                return
-              }
-
-              if (progress >= 0.24) {
-                setActiveHeroStep(1)
-                return
-              }
-
-              setActiveHeroStep(0)
-            },
+        } else {
+          gsap.set(heroStepsNodes, {
+            yPercent: 14,
+            autoAlpha: 0,
+            zIndex: 0,
           })
+          gsap.set(heroStepsNodes[0], { yPercent: 0, autoAlpha: 1, zIndex: 1 })
+          gsap.set(heroRail, {
+            autoAlpha: 1,
+            xPercent: 0,
+            yPercent: 0,
+            x: 0,
+            y: 0,
+          })
+        }
 
-          return () => {
-            ScrollTrigger.removeEventListener('refreshInit', syncHeroRailViewport)
-            trigger.kill()
-          }
+        syncHeroRailViewport()
+        ScrollTrigger.addEventListener('refreshInit', syncHeroRailViewport)
+
+        const trigger = ScrollTrigger.create({
+          trigger: heroTrackRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: prefersReducedMotion ? 0.1 : 0.9,
+          pin: '.hero-stage',
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: ({ progress }) => {
+            setActiveHeroStep(getHeroStepIndex(progress))
+          },
         })
 
-        mm.add('(max-width: 1199px)', () => {
-          gsap.set(heroStepsNodes, { clearProps: 'all' })
-          gsap.set(heroRailViewport, { clearProps: 'all' })
-          gsap.set(heroFrame, { clearProps: 'all' })
-          gsap.set(heroRail, { clearProps: 'all' })
-          gsap.set(ambientVeil, { clearProps: 'all' })
-          gsap.set(depthVeil, { clearProps: 'all' })
-        })
+        return () => {
+          ScrollTrigger.removeEventListener('refreshInit', syncHeroRailViewport)
+          railTransition?.kill()
+          trigger.kill()
+        }
+      })
 
+      mm.add('(max-width: 1199px)', () => {
         gsap.set(heroStepsNodes, { clearProps: 'all' })
-        gsap.set(heroRailViewport, { clearProps: 'all' })
-        gsap.set(heroFrame, { clearProps: 'all' })
-        gsap.set(heroRail, { clearProps: 'all' })
-        gsap.set(ambientVeil, { clearProps: 'all' })
-        gsap.set(depthVeil, { clearProps: 'all' })
-      }
+
+        if (heroRailViewport) {
+          gsap.set(heroRailViewport, { clearProps: 'all' })
+        }
+
+        if (heroRail) {
+          gsap.set(heroRail, { clearProps: 'all' })
+        }
+      })
 
       gsap.utils.toArray('.section-panel').forEach((panel) => {
         const revealItems = panel.querySelectorAll('.content-reveal')
@@ -482,7 +249,7 @@ function App() {
     <main
       id="top"
       ref={pageRef}
-      className={`page ${prefersReducedMotion ? 'has-reduced-motion' : ''}`}
+      className="page"
     >
       <section
         ref={heroTrackRef}
@@ -490,27 +257,12 @@ function App() {
       >
         <div className="hero-stage">
           <div className="hero-atmosphere" />
-          <HeroScene controls={sceneControls} reducedMotion={prefersReducedMotion} />
-          <div className="hero-poster" aria-hidden="true" />
 
           <div className="hero-overlay">
             <div className="hero-overlay__inner">
-              <div className="hero-banner">
-                <span>Built at Georgetown University for DC benchmarking.</span>
-                <span>
-                  Need official District guidance or helpdesk support?{' '}
-                  <a
-                    href="https://dc.beam-portal.org/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Visit DOEE’s BEAM portal.
-                  </a>
-                </span>
-              </div>
               <header className="hero-chrome">
                 <a className="hero-chrome__brand" href="#top">
-                  Quoin
+                  Project QUOIN
                 </a>
                 <div className="hero-chrome__group">
                   <button
@@ -592,35 +344,41 @@ function App() {
                     <a className="button button--primary" href="#cta">
                       {heroContent.primaryCta}
                     </a>
-                    <a className="hero-copy__link" href="#workflow">
-                      {heroContent.secondaryCta}
-                    </a>
                   </div>
-
-                  <p className="hero-copy__support">{heroContent.support}</p>
                 </div>
 
-                <aside
-                  className="hero-rail"
-                  aria-label="Scroll narrative"
-                >
-                  <span className="hero-rail__caption">How it works</span>
-                  <div className="hero-rail__viewport">
-                    {heroSteps.map((step, index) => (
-                      <article
-                        key={step.label}
-                        className={`hero-step hero-step--${index}`}
-                      >
-                        <p className="hero-step__label">
-                          <span>{step.index}</span>
-                          {step.label}
-                        </p>
-                        <h2>{step.title}</h2>
-                        <p>{step.body}</p>
-                      </article>
-                    ))}
-                  </div>
-                </aside>
+                <div className="hero-side">
+                  <figure className="hero-spm-mark">
+                    <img
+                      src="/espm/Works_with_PM_logo_Blue.png"
+                      alt="Works with ENERGY STAR Portfolio Manager"
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </figure>
+
+                  <aside
+                    className="hero-rail"
+                    aria-label="Scroll narrative"
+                  >
+                    <span className="hero-rail__caption">How it works</span>
+                    <div className="hero-rail__viewport">
+                      {heroSteps.map((step, index) => (
+                        <article
+                          key={step.label}
+                          className={`hero-step hero-step--${index}`}
+                        >
+                          <p className="hero-step__label">
+                            <span>{step.index}</span>
+                            {step.label}
+                          </p>
+                          <h2>{step.title}</h2>
+                          <p>{step.body}</p>
+                        </article>
+                      ))}
+                    </div>
+                  </aside>
+                </div>
               </div>
             </div>
           </div>
@@ -697,7 +455,7 @@ function App() {
       </section>
 
       <footer className="home-footer">
-        <p>Quoin is a public-interest tool built at Georgetown University for DC benchmarking.</p>
+        <p>Quoin is a public-interest tool built at Georgetown for DC & the Environment.</p>
       </footer>
     </main>
   )
